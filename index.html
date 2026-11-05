@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Painel do Atleta - Victor Rafael</title>
+  <style>
+    :root {
+      --bg: #0b1120;
+      --card-bg: #1e293b;
+      --card-bg-light: #24344d;
+      --border: #334155;
+      --primary: #38bdf8;
+      --accent: #10b981;
+      --warning: #f59e0b;
+      --gold: #fbbf24;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; -webkit-tap-highlight-color: transparent; }
+    body { background-color: var(--bg); color: var(--text); padding: 16px; padding-bottom: 36px; max-width: 900px; margin: 0 auto; }
+    
+    .header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 1px solid var(--border); padding-bottom: 14px; margin-bottom: 20px; }
+    .header h1 { font-size: 20px; font-weight: 700; color: var(--primary); }
+    .header .subtitle { font-size: 12px; color: var(--muted); margin-top: 3px; text-transform: capitalize; }
+    .header .status { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; color: var(--accent); background: rgba(16, 185, 129, 0.12); padding: 5px 10px; border-radius: 9999px; white-space: nowrap; }
+
+    .section-title { font-size: 14px; font-weight: 700; color: var(--gold); margin-bottom: 12px; display: flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    /* Grid de Recordes Pessoais */
+    .pr-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 24px; }
+    .pr-card { background: linear-gradient(145deg, #1e293b, #151f30); border: 1px solid #334155; border-radius: 12px; padding: 14px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; }
+    .pr-card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--gold); }
+    .pr-card .dist { font-size: 11px; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+    .pr-card .time { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 2px; }
+    .pr-card .pace { font-size: 12px; color: var(--primary); font-weight: 600; margin-bottom: 4px; }
+    .pr-card .date { font-size: 10px; color: var(--muted); margin-bottom: 10px; }
+    
+    /* Box secundária destacando a Esteira com quebra de linha elegante */
+    .pr-split-box { background: rgba(15, 23, 42, 0.6); border-top: 1px dashed rgba(51, 65, 85, 0.8); padding-top: 8px; margin-top: auto; font-size: 11px; }
+    .pr-split-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+    .pr-split-title { font-size: 11px; font-weight: 700; color: var(--muted); }
+    .pr-split-time { font-size: 13px; font-weight: 800; color: #e2e8f0; }
+    .pr-split-line { font-size: 11px; color: var(--primary); font-weight: 600; margin-bottom: 2px; }
+    .pr-split-date { font-size: 10px; color: var(--muted); }
+    .pr-split-empty { font-size: 11px; color: var(--muted); font-style: italic; margin-top: 2px; }
+
+    .pr-card.target::before { background: var(--primary); }
+    .pr-card.target .dist { color: var(--primary); }
+
+    /* Grid de Métricas do Dia */
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 20px; }
+    .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+    .card .title { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+    .card .value { font-size: 24px; font-weight: 700; margin-bottom: 2px; }
+    .card .sub { font-size: 11px; color: var(--muted); }
+    .status-optimal { color: var(--accent); }
+
+    /* Treino de Hoje Card Detalhado */
+    .workout-card { background: linear-gradient(145deg, #1e293b, #19263a); border: 1px solid rgba(56, 189, 248, 0.4); }
+    .workout-title { font-size: 16px; font-weight: 700; color: var(--primary); margin-bottom: 4px; line-height: 1.3; }
+    .workout-meta { font-size: 12px; color: #e2e8f0; font-weight: 600; margin-bottom: 6px; }
+    .warmup-tag { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; background: rgba(56, 189, 248, 0.15); color: var(--primary); border: 1px solid rgba(56, 189, 248, 0.3); padding: 3px 8px; border-radius: 6px; font-weight: 600; }
+
+    /* Coach Box */
+    .coach-box { background: linear-gradient(135deg, rgba(56, 189, 248, 0.12), rgba(16, 185, 129, 0.06)); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 12px; padding: 16px; margin-bottom: 24px; }
+    .coach-box h2 { font-size: 14px; color: var(--primary); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+    .coach-box p { font-size: 13px; line-height: 1.55; color: #e2e8f0; }
+
+    /* Seção de Volume Semanal (Mês Anterior & Atual) */
+    .volume-container { margin-bottom: 24px; }
+    .volume-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-bottom: 14px; }
+    .volume-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+    .volume-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; border-bottom: 1px solid rgba(51, 65, 85, 0.6); padding-bottom: 8px; }
+    .volume-month { font-size: 14px; font-weight: 700; color: #fff; }
+    .volume-total { font-size: 13px; font-weight: 700; color: var(--accent); background: rgba(16, 185, 129, 0.12); padding: 3px 8px; border-radius: 6px; }
+    
+    .week-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; font-size: 12px; }
+    .week-name { color: var(--muted); flex: 1.2; }
+    .week-bar-container { flex: 1.3; margin: 0 10px; height: 6px; background: rgba(51, 65, 85, 0.6); border-radius: 3px; overflow: hidden; }
+    .week-bar-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 3px; }
+    .week-val { font-weight: 700; color: var(--text); min-width: 55px; text-align: right; }
+
+    /* Histórico de Cargas dos Últimos 6 Meses */
+    .history-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 24px; }
+    .history-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 10px; margin-top: 10px; }
+    .history-item { background: rgba(15, 23, 42, 0.5); border: 1px solid rgba(51, 65, 85, 0.7); border-radius: 8px; padding: 10px; text-align: center; }
+    .history-month { font-size: 11px; font-weight: 700; color: var(--muted); margin-bottom: 4px; text-transform: uppercase; }
+    .history-km { font-size: 15px; font-weight: 800; color: var(--primary); margin-bottom: 2px; }
+    .history-runs { font-size: 10px; color: var(--muted); }
+
+    /* Tabela de Atividades */
+    .table-container { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 16px; overflow-x: auto; margin-bottom: 24px; }
+    .table-header-box { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .table-container h3 { font-size: 14px; color: var(--text); }
+    .table-subtitle { font-size: 11px; color: var(--muted); }
+    table { width: 100%; border-collapse: collapse; font-size: 12px; min-width: 450px; }
+    th { text-align: left; padding: 8px; border-bottom: 1px solid var(--border); color: var(--muted); font-weight: 600; }
+    td { padding: 10px 8px; border-bottom: 1px solid rgba(51, 65, 85, 0.5); }
+    .badge { padding: 3px 6px; border-radius: 4px; font-size: 10px; font-weight: 600; background: rgba(56, 189, 248, 0.15); color: var(--primary); }
+    .badge-week { padding: 2px 6px; border-radius: 4px; font-size: 9px; font-weight: 700; text-transform: uppercase; }
+    .badge-current { background: rgba(16, 185, 129, 0.15); color: var(--accent); border: 1px solid rgba(16, 185, 129, 0.3); }
+    .badge-last { background: rgba(148, 163, 184, 0.12); color: var(--muted); border: 1px solid rgba(148, 163, 184, 0.2); }
+    
+    .footer { text-align: center; font-size: 11px; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div>
+      <h1>Painel de Treinamento</h1>
+      <div class="subtitle" id="headerSubtitle">Victor Rafael • Horário de Brasília</div>
+    </div>
+    <div class="status" id="syncStatus">
+      <span style="display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--accent);"></span>
+      <span id="syncText">Sincronizado</span>
+    </div>
+  </div>
+
+  <!-- RECORDES PESSOAIS: RUA (GPS) COM DETALHAMENTO DE ESTEIRA NA BASE -->
+  <div class="section-title">
+    🏆 Melhores Marcas Pessoais (Recordes)
+  </div>
+
+  <div class="pr-grid" id="prGridContainer">
+    <!-- Card 1k -->
+    <div class="pr-card">
+      <div>
+        <div class="dist">Melhor 1 km</div>
+        <div class="time">4'49"</div>
+        <div class="pace">Ritmo: 4'49" /km</div>
+        <div class="date">📍 Rua (GPS) • 23/08/2026</div>
+      </div>
+      <div class="pr-split-box">
+        <div class="pr-split-header">
+          <span class="pr-split-title">⚡ Esteira</span>
+          <span class="pr-split-time">4'32"</span>
+        </div>
+        <div class="pr-split-line">Ritmo: 4'32" /km</div>
+        <div class="pr-split-date">10/08/2026</div>
+      </div>
+    </div>
+
+    <!-- Card 5k -->
+    <div class="pr-card">
+      <div>
+        <div class="dist">Melhor 5 km</div>
+        <div class="time">25:49</div>
+        <div class="pace">Ritmo: 5'10" /km</div>
+        <div class="date">📍 Rua (GPS) • 23/08/2026</div>
+      </div>
+      <div class="pr-split-box">
+        <div class="pr-split-header">
+          <span class="pr-split-title">⚡ Esteira</span>
+          <span class="pr-split-time">26:15</span>
+        </div>
+        <div class="pr-split-line">Ritmo: 5'15" /km</div>
+        <div class="pr-split-date">08/10/2026</div>
+      </div>
+    </div>
+
+    <!-- Card 10k -->
+    <div class="pr-card">
+      <div>
+        <div class="dist">Melhor 10 km</div>
+        <div class="time">55:29</div>
+        <div class="pace">Ritmo: 5'33" /km</div>
+        <div class="date">📍 Rua (GPS) • 19/09/2026</div>
+      </div>
+      <div class="pr-split-box">
+        <div class="pr-split-header">
+          <span class="pr-split-title">⚡ Esteira</span>
+          <span class="pr-split-time">56:53</span>
+        </div>
+        <div class="pr-split-line">Ritmo: 5'41" /km</div>
+        <div class="pr-split-date">05/09/2026</div>
+      </div>
+    </div>
+
+    <!-- Card 15k -->
+    <div class="pr-card">
+      <div>
+        <div class="dist">Melhor 15 km</div>
+        <div class="time">1:26:12</div>
+        <div class="pace">Ritmo: 5'45" /km</div>
+        <div class="date">📍 Rua (GPS) • 31/10/2026</div>
+      </div>
+      <div class="pr-split-box">
+        <div class="pr-split-header">
+          <span class="pr-split-title">⚡ Esteira</span>
+        </div>
+        <div class="pr-split-empty">Sem registro</div>
+      </div>
+    </div>
+
+    <!-- Card 21k -->
+    <div class="pr-card target">
+      <div>
+        <div class="dist">Meia Maratona</div>
+        <div class="time" style="font-size: 20px; line-height: 26px; color: var(--primary);">Prova-Alvo</div>
+        <div class="pace" style="margin-bottom: 2px;">Meta: Sub 2h00</div>
+        <div class="pace" style="margin-bottom: 6px;">Ritmo: (&lt; 5'41")</div>
+        <div class="date">🎯 Abril / 2027</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRONTIDÃO DO DIA -->
+  <div class="grid">
+    <div class="card">
+      <div class="title">FC Repouso</div>
+      <div class="value" id="valRestingHR">50 <span style="font-size: 13px; font-weight: normal; color: var(--muted);">bpm</span></div>
+      <div class="sub status-optimal" id="subRestingHR">✓ Estável e recuperada</div>
+    </div>
+    <div class="card">
+      <div class="title">Forma (TSB)</div>
+      <div class="value status-optimal" id="valTSB">0.0</div>
+      <div class="sub" id="subTSB">Neutro / Equilibrado</div>
+    </div>
+    <div class="card">
+      <div class="title">Fitness / Fadiga</div>
+      <div class="value" id="valFitness">0.4 <span style="font-size: 13px; font-weight: normal; color: var(--muted);">/ 1.6</span></div>
+      <div class="sub" id="subFitness">CTL / ATL Atual</div>
+    </div>
+    <div class="card workout-card">
+      <div class="title">Próximo Treino</div>
+      <div class="workout-title" id="valTodayWorkout">Carregando...</div>
+      <div class="workout-meta" id="subTodayWorkout">-</div>
+      <div id="warmupTagContainer"></div>
+    </div>
+  </div>
+
+  <!-- PARECER DO TREINADOR IA -->
+  <div class="coach-box">
+    <h2>🤖 Parecer do Treinador IA</h2>
+    <p id="coachText">
+      Carregando análise e prontidão em tempo real...
+    </p>
+  </div>
+
+  <!-- ACUMULADO POR SEMANA (SEGUNDA A DOMINGO) -->
+  <div class="volume-container">
+    <div class="section-title">
+      📊 Volume Semanal de Corrida (Segunda a Domingo)
+    </div>
+    <div class="volume-grid">
+      <!-- Mês Anterior -->
+      <div class="volume-card" id="prevMonthCard">
+        <div class="volume-header">
+          <div class="volume-month" id="prevMonthName">Outubro / 2026</div>
+          <div class="volume-total" id="prevMonthTotal">- km</div>
+        </div>
+        <div id="prevMonthWeeks">Carregando semanas...</div>
+      </div>
+
+      <!-- Mês Atual -->
+      <div class="volume-card" id="currMonthCard">
+        <div class="volume-header">
+          <div class="volume-month" id="currMonthName">Novembro / 2026</div>
+          <div class="volume-total" id="currMonthTotal">- km</div>
+        </div>
+        <div id="currMonthWeeks">Carregando semanas...</div>
+      </div>
+    </div>
+
+    <!-- Histórico de Cargas dos Últimos 6 Meses -->
+    <div class="history-card">
+      <div class="section-title" style="margin-bottom: 4px; font-size: 13px;">
+        📈 Histórico de Volume dos Últimos 6 Meses
+      </div>
+      <div class="history-grid" id="sixMonthsGrid">
+        <!-- Renderizado dinamicamente via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- TABELA DE ATIVIDADES: SEMANA PASSADA & SEMANA ATUAL -->
+  <div class="table-container">
+    <div class="table-header-box">
+      <div>
+        <h3>Atividades Recentes</h3>
+        <div class="table-subtitle">Semana Passada (26/10 a 01/11) & Semana Atual (02/11 a 08/11)</div>
+      </div>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Período</th>
+          <th>Data</th>
+          <th>Treino</th>
+          <th>Tempo</th>
+          <th>Distância</th>
+          <th>FC Média</th>
+        </tr>
+      </thead>
+      <tbody id="activitiesTableBody">
+        <tr>
+          <td colspan="6" style="text-align:center; color:var(--muted); padding:16px;">Carregando atividades...</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="footer" id="footerText">
+    bud-run • Atualizado automaticamente via Intervals.icu API (Horário de Brasília)
+  </div>
+
+  <script>
+    async function loadDashboardData() {
+      try {
+        const res = await fetch('/api/data');
+        if (!res.ok) throw new Error('Falha ao obter dados da API');
+        const data = await res.json();
+
+        // 1. Atualizar Header com Horário de Brasília
+        if (data.updatedAt) {
+          document.getElementById('syncText').textContent = `Atualizado às ${data.updatedAt} (BRT)`;
+        }
+        if (data.date) {
+          document.getElementById('headerSubtitle').textContent = `Victor Rafael • ${data.date}`;
+        }
+
+        // 2. Renderizar PRs com a quebra de linha na Esteira e Sem registro nos 15k
+        if (data.personalRecords && Array.isArray(data.personalRecords)) {
+          const container = document.getElementById('prGridContainer');
+          container.innerHTML = '';
+          data.personalRecords.forEach(item => {
+            const card = document.createElement('div');
+            card.className = item.isTarget ? 'pr-card target' : 'pr-card';
+            if (item.isTarget) {
+              card.innerHTML = `
+                <div>
+                  <div class="dist">${item.dist}</div>
+                  <div class="time" style="font-size: 20px; line-height: 26px; color: var(--primary);">${item.title}</div>
+                  <div class="pace" style="margin-bottom: 2px;">${item.targetMeta}</div>
+                  <div class="pace" style="margin-bottom: 6px;">${item.targetPace}</div>
+                  <div class="date">🎯 ${item.date}</div>
+                </div>
+              `;
+            } else {
+              let splitContent = '';
+              if (item.secondary.hasData) {
+                splitContent = `
+                  <div class="pr-split-header">
+                    <span class="pr-split-title">⚡ Esteira</span>
+                    <span class="pr-split-time">${item.secondary.time}</span>
+                  </div>
+                  <div class="pr-split-line">Ritmo: ${item.secondary.pace}</div>
+                  <div class="pr-split-date">${item.secondary.date}</div>
+                `;
+              } else {
+                splitContent = `
+                  <div class="pr-split-header">
+                    <span class="pr-split-title">⚡ Esteira</span>
+                  </div>
+                  <div class="pr-split-empty">Sem registro</div>
+                `;
+              }
+
+              card.innerHTML = `
+                <div>
+                  <div class="dist">${item.dist}</div>
+                  <div class="time">${item.primary.time}</div>
+                  <div class="pace">Ritmo: ${item.primary.pace}</div>
+                  <div class="date">📍 ${item.primary.type} • ${item.primary.date}</div>
+                </div>
+                <div class="pr-split-box">
+                  ${splitContent}
+                </div>
+              `;
+            }
+            container.appendChild(card);
+          });
+        }
+
+        // 3. Prontidão
+        if (data.readiness) {
+          document.getElementById('valRestingHR').innerHTML = `${data.readiness.restingHR} <span style="font-size: 13px; font-weight: normal; color: var(--muted);">bpm</span>`;
+          document.getElementById('valTSB').textContent = (data.readiness.tsb > 0 ? '+' : '') + data.readiness.tsb;
+          document.getElementById('subTSB').textContent = data.readiness.formStatus || 'Equilibrado';
+          document.getElementById('valFitness').innerHTML = `${data.readiness.ctl} <span style="font-size: 13px; font-weight: normal; color: var(--muted);">/ ${data.readiness.atl}</span>`;
+        }
+
+        // 4. Treino de Hoje / Próximo Treino com Aquecimento
+        if (data.todayWorkout) {
+          document.getElementById('valTodayWorkout').textContent = data.todayWorkout.name;
+          const subInfo = [data.todayWorkout.distance, data.todayWorkout.duration].filter(x => x && x !== '-').join(' • ');
+          document.getElementById('subTodayWorkout').textContent = subInfo || data.todayWorkout.description;
+          
+          const warmupContainer = document.getElementById('warmupTagContainer');
+          warmupContainer.innerHTML = '';
+          if (data.todayWorkout.warmup) {
+            const tag = document.createElement('div');
+            tag.className = 'warmup-tag';
+            tag.innerHTML = `🔥 ${data.todayWorkout.warmup}`;
+            warmupContainer.appendChild(tag);
+          }
+        }
+
+        // 5. Parecer do Treinador
+        if (data.coachAdvice) {
+          document.getElementById('coachText').innerHTML = data.coachAdvice.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        }
+
+        // 6. Volume Semanal (Segunda a Domingo)
+        if (data.volumeStats) {
+          renderVolumeMonth('prev', data.volumeStats.previousMonth);
+          renderVolumeMonth('curr', data.volumeStats.currentMonth);
+        }
+
+        // 7. Histórico dos Últimos 6 Meses
+        if (data.sixMonthsHistory && Array.isArray(data.sixMonthsHistory)) {
+          const grid = document.getElementById('sixMonthsGrid');
+          grid.innerHTML = '';
+          data.sixMonthsHistory.forEach(h => {
+            const item = document.createElement('div');
+            item.className = 'history-item';
+            item.innerHTML = `
+              <div class="history-month">${h.month}</div>
+              <div class="history-km">${h.km}</div>
+              <div class="history-runs">${h.count} treinos</div>
+            `;
+            grid.appendChild(item);
+          });
+        }
+
+        // 8. Tabela de Atividades: Semana Passada + Semana Atual
+        if (data.recentActivities && data.recentActivities.length > 0) {
+          const tbody = document.getElementById('activitiesTableBody');
+          tbody.innerHTML = '';
+          data.recentActivities.forEach(act => {
+            const tr = document.createElement('tr');
+            const isCurrent = act.weekGroup === 'Semana Atual';
+            const badgeClass = isCurrent ? 'badge-week badge-current' : 'badge-week badge-last';
+            tr.innerHTML = `
+              <td><span class="${badgeClass}">${act.weekGroup}</span></td>
+              <td>${act.date}</td>
+              <td><span class="badge">Corrida</span> ${act.name}</td>
+              <td>${act.duration}</td>
+              <td>${act.distance}</td>
+              <td>${act.avgHR}</td>
+            `;
+            tbody.appendChild(tr);
+          });
+        }
+      } catch (err) {
+        console.warn('Erro ao carregar dados:', err);
+        document.getElementById('syncText').textContent = 'Modo Offline / Cache';
+      }
+    }
+
+    function renderVolumeMonth(prefix, monthData) {
+      if (!monthData) return;
+      document.getElementById(`${prefix}MonthName`).textContent = monthData.month;
+      document.getElementById(`${prefix}MonthTotal`).textContent = monthData.totalKm;
+
+      const container = document.getElementById(`${prefix}MonthWeeks`);
+      container.innerHTML = '';
+
+      const maxKm = Math.max(...monthData.weeks.map(w => w.rawKm), 25);
+
+      monthData.weeks.forEach(w => {
+        const pct = Math.min(100, Math.round((w.rawKm / maxKm) * 100));
+        const row = document.createElement('div');
+        row.className = 'week-row';
+        row.innerHTML = `
+          <div class="week-name">${w.label}</div>
+          <div class="week-bar-container">
+            <div class="week-bar-fill" style="width: ${pct}%;"></div>
+          </div>
+          <div class="week-val">${w.km}</div>
+        `;
+        container.appendChild(row);
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', loadDashboardData);
+  </script>
+</body>
+</html>
