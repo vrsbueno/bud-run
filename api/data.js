@@ -406,6 +406,14 @@ export default async function handler(req, res) {
               "Sobremesa: troca 1 pct Magic Toast por 1 col. sopa (20g) geleia ou 2 col. sopa (40g) Doce de Leite Zero",
               "Intra: 1x VO2 C30 Banana (qualidade) ou 1x Bananinha Tachão (rodagem)"
             ]
+          },
+          {
+            title: "Se pesou no FDS (Ajuste Seg/Ter — sem cortar pré-treino)",
+            items: [
+              "Café: cuscuz 65g ➡️ 45g (seco) • Almoço: arroz 230g ➡️ 170g",
+              "Jantar: carbo 150–180g ➡️ 100–120g • Água: 3,5L",
+              "Mantenha 100% intactos: proteína, pré (16h45) e intra (18h45)"
+            ]
           }
         ]
       };
@@ -563,6 +571,14 @@ export default async function handler(req, res) {
               "2º Gel (~1h05–1h10): Z2+ Energy Lime (100mg caf + 200mg Na)",
               "3º Gel (~1h40, se ≥18 km): Z2+ Iced Coffee (150mg caf + 200mg Na)"
             ]
+          },
+          {
+            title: "Se for pesar na comida no FDS",
+            items: [
+              "Melhor janela: almoço de Sábado pós-longão (músculos absorvem melhor)",
+              "Vai jantar pesado? Faça o almoço limpo (só proteína magra + salada)",
+              "Se exagerar: ajuste Seg/Ter reduzindo só cuscuz (45g), arroz (170g) e carbo do jantar (110g)"
+            ]
           }
         ]
       };
@@ -589,7 +605,16 @@ export default async function handler(req, res) {
           { time: "Almoço / Jantar", title: "Refeições do Dia", detail: "Livres com bom senso (bater proteína e evitar excessos calóricos)", highlight: false }
         ],
         gels: [],
-        alternatives: []
+        alternatives: [
+          {
+            title: "Se for pesar na comida hoje (Domingo)",
+            items: [
+              "Vai jantar pesado? Almoce limpo (proteína magra + salada, sem carbo/gordura extra)",
+              "Beba 3,5L de água + caminhada leve (30–40 min) se almoçar pesado",
+              "Se exagerar: ajuste Seg/Ter reduzindo só cuscuz (45g), arroz (170g) e carbo do jantar (110g)"
+            ]
+          }
+        ]
       };
     }
 
