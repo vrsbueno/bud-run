@@ -50,11 +50,23 @@
 
     /* Grid de Métricas do Dia */
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 20px; }
-    .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
-    .card .title { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+    .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 14px; position: relative; }
+    .card-head { display: flex; justify-content: space-between; align-items: center; gap: 6px; margin-bottom: 6px; }
+    .card .title { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0; }
     .card .value { font-size: 24px; font-weight: 700; margin-bottom: 2px; }
     .card .sub { font-size: 11px; color: var(--muted); }
     .status-optimal { color: var(--accent); }
+
+    /* Caixa suspensa (Tooltip / Popover) das métricas */
+    .info-wrap { position: relative; display: inline-flex; align-items: center; }
+    .info-btn { width: 17px; height: 17px; border-radius: 50%; border: 1px solid var(--border); background: rgba(15, 23, 42, 0.7); color: var(--muted); font-size: 10px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; line-height: 1; transition: all 0.15s ease; }
+    .info-btn:hover, .info-wrap.open .info-btn { border-color: var(--primary); color: var(--primary); background: rgba(56, 189, 248, 0.12); }
+    .info-popover { display: none; position: absolute; top: calc(100% + 8px); right: -6px; width: 230px; background: #0f172a; border: 1px solid rgba(56, 189, 248, 0.45); border-radius: 10px; padding: 10px 12px; font-size: 11px; line-height: 1.45; color: #e2e8f0; box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55); z-index: 60; text-transform: none; letter-spacing: normal; font-weight: 400; }
+    .info-popover strong { color: var(--primary); display: block; margin-bottom: 4px; font-size: 11px; }
+    .info-wrap:hover .info-popover, .info-wrap.open .info-popover { display: block; }
+    @media (max-width: 520px) {
+      .info-popover { right: -10px; width: 210px; }
+    }
 
     /* Treino de Hoje Card Detalhado */
     .workout-card { background: linear-gradient(145deg, #1e293b, #19263a); border: 1px solid rgba(56, 189, 248, 0.4); }
@@ -63,9 +75,56 @@
     .warmup-tag { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; background: rgba(56, 189, 248, 0.15); color: var(--primary); border: 1px solid rgba(56, 189, 248, 0.3); padding: 3px 8px; border-radius: 6px; font-weight: 600; }
 
     /* Coach Box */
-    .coach-box { background: linear-gradient(135deg, rgba(56, 189, 248, 0.12), rgba(16, 185, 129, 0.06)); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 12px; padding: 16px; margin-bottom: 24px; }
+    .coach-box { background: linear-gradient(135deg, rgba(56, 189, 248, 0.12), rgba(16, 185, 129, 0.06)); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 12px; padding: 16px; margin-bottom: 20px; }
     .coach-box h2 { font-size: 14px; color: var(--primary); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
     .coach-box p { font-size: 13px; line-height: 1.55; color: #e2e8f0; }
+
+    /* Protocolo do Dia (Treino + Nutrição + Géis) */
+    .protocol-card { background: linear-gradient(145deg, #1a2639, #131d2e); border: 1px solid rgba(16, 185, 129, 0.4); border-radius: 14px; padding: 16px; margin-bottom: 24px; }
+    .protocol-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 12px; }
+    .protocol-title-wrap { display: flex; flex-direction: column; gap: 3px; }
+    .protocol-heading { font-size: 15px; font-weight: 800; color: var(--accent); display: flex; align-items: center; gap: 6px; }
+    .protocol-sub { font-size: 12px; color: #e2e8f0; font-weight: 600; }
+    .protocol-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+    .proto-pill { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border); color: var(--muted); font-size: 11px; font-weight: 600; padding: 5px 10px; border-radius: 9999px; cursor: pointer; transition: all 0.15s ease; }
+    .proto-pill:hover { border-color: var(--primary); color: var(--text); }
+    .proto-pill.active { background: rgba(16, 185, 129, 0.18); border-color: var(--accent); color: var(--accent); }
+
+    .macro-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 8px; margin-bottom: 14px; }
+    .macro-pill { background: rgba(15, 23, 42, 0.65); border: 1px solid rgba(51, 65, 85, 0.8); border-radius: 8px; padding: 8px 10px; }
+    .macro-label { font-size: 10px; text-transform: uppercase; color: var(--muted); font-weight: 700; letter-spacing: 0.4px; }
+    .macro-val { font-size: 14px; font-weight: 800; color: #fff; margin-top: 2px; }
+
+    .protocol-alerts { background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.25); border-radius: 10px; padding: 10px 12px; margin-bottom: 14px; }
+    .protocol-alerts-title { font-size: 11px; font-weight: 700; color: var(--warning); text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 6px; }
+    .protocol-alerts ul { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+    .protocol-alerts li { font-size: 12px; line-height: 1.45; color: #e2e8f0; padding-left: 14px; position: relative; }
+    .protocol-alerts li::before { content: "•"; color: var(--warning); font-weight: 900; position: absolute; left: 0; }
+
+    .meal-list { display: flex; flex-direction: column; gap: 8px; }
+    .meal-row { display: grid; grid-template-columns: 78px 1fr; gap: 10px; align-items: start; background: rgba(15, 23, 42, 0.55); border: 1px solid rgba(51, 65, 85, 0.65); border-radius: 8px; padding: 9px 12px; }
+    .meal-row.is-key { border-left: 3px solid var(--accent); }
+    .meal-time { font-size: 11px; font-weight: 800; color: var(--primary); padding-top: 2px; }
+    .meal-title { font-size: 12px; font-weight: 700; color: #fff; margin-bottom: 2px; }
+    .meal-detail { font-size: 12px; color: #cbd5e1; line-height: 1.4; }
+
+    .gel-box { margin-top: 12px; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 10px; padding: 10px 12px; }
+    .gel-box-title { font-size: 11px; font-weight: 800; color: var(--primary); text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 6px; }
+    .gel-step { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px; font-size: 12px; padding: 4px 0; border-bottom: 1px dashed rgba(51, 65, 85, 0.6); }
+    .gel-step:last-child { border-bottom: none; }
+    .gel-moment { font-weight: 700; color: #fff; }
+    .gel-item { font-weight: 700; color: var(--accent); }
+    .gel-note { color: var(--muted); font-size: 11px; }
+
+    .alt-grid { margin-top: 12px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; }
+    .alt-box { background: rgba(15, 23, 42, 0.55); border: 1px dashed rgba(51, 65, 85, 0.9); border-radius: 10px; padding: 10px 12px; }
+    .alt-title { font-size: 11px; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 7px; }
+    .alt-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .alt-chip { font-size: 11px; color: #e2e8f0; background: rgba(30, 41, 59, 0.9); border: 1px solid rgba(51, 65, 85, 0.9); padding: 4px 8px; border-radius: 6px; line-height: 1.3; }
+
+    @media (max-width: 520px) {
+      .meal-row { grid-template-columns: 1fr; gap: 3px; }
+    }
 
     /* Seção de Volume Semanal (Mês Anterior & Atual) */
     .volume-container { margin-bottom: 24px; }
@@ -115,6 +174,115 @@
       <span style="display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--accent);"></span>
       <span id="syncText">Sincronizado</span>
     </div>
+  </div>
+
+  <!-- PRONTIDÃO DO DIA & PRÓXIMO TREINO -->
+  <div class="grid">
+    <div class="card">
+      <div class="card-head">
+        <div class="title">FC Repouso</div>
+        <div class="info-wrap">
+          <button type="button" class="info-btn" aria-label="O que é FC Repouso?">?</button>
+          <div class="info-popover">
+            <strong>Frequência Cardíaca de Repouso</strong>
+            Batimentos em repouso absoluto ao acordar. Estável ou baixa (~50 bpm) indica boa recuperação. Se subir 5+ bpm acima do normal, pode sinalizar fadiga, sono ruim ou estresse.
+          </div>
+        </div>
+      </div>
+      <div class="value" id="valRestingHR">50 <span style="font-size: 13px; font-weight: normal; color: var(--muted);">bpm</span></div>
+      <div class="sub status-optimal" id="subRestingHR">✓ Estável e recuperada</div>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <div class="title">Forma (TSB)</div>
+        <div class="info-wrap">
+          <button type="button" class="info-btn" aria-label="O que é Forma (TSB)?">?</button>
+          <div class="info-popover">
+            <strong>Forma / Saldo de Prontidão (TSB)</strong>
+            Diferença entre Fitness e Fadiga (CTL − ATL).<br>
+            • <b>-10 a +5:</b> Equilibrado para treinar.<br>
+            • <b>Abaixo de -15:</b> Fadiga alta (alivie o ritmo).<br>
+            • <b>Acima de +5:</b> Descansado (ideal para provas).
+          </div>
+        </div>
+      </div>
+      <div class="value status-optimal" id="valTSB">0.0</div>
+      <div class="sub" id="subTSB">Neutro / Equilibrado</div>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <div class="title">Fitness / Fadiga</div>
+        <div class="info-wrap">
+          <button type="button" class="info-btn" aria-label="O que é Fitness e Fadiga?">?</button>
+          <div class="info-popover">
+            <strong>CTL (Fitness) / ATL (Fadiga)</strong>
+            • <b>CTL:</b> Carga média dos últimos 42 dias (seu condicionamento de base).<br>
+            • <b>ATL:</b> Carga dos últimos 7 dias (cansaço recente).<br>
+            O objetivo é subir o CTL gradualmente sem disparar demais o ATL.
+          </div>
+        </div>
+      </div>
+      <div class="value" id="valFitness">0.4 <span style="font-size: 13px; font-weight: normal; color: var(--muted);">/ 1.6</span></div>
+      <div class="sub" id="subFitness">CTL / ATL Atual</div>
+    </div>
+    <div class="card workout-card">
+      <div class="card-head">
+        <div class="title">Próximo Treino</div>
+      </div>
+      <div class="workout-title" id="valTodayWorkout">Carregando...</div>
+      <div class="workout-meta" id="subTodayWorkout">-</div>
+      <div id="warmupTagContainer"></div>
+    </div>
+  </div>
+
+  <!-- PARECER DO TREINADOR IA -->
+  <div class="coach-box">
+    <h2>🤖 Análise Rápida do Especialista</h2>
+    <p id="coachText">
+      Carregando análise e prontidão em tempo real...
+    </p>
+  </div>
+
+  <!-- PROTOCOLO DO DIA (TREINO + NUTRIÇÃO + GÉIS) -->
+  <div class="protocol-card" id="protocolCard">
+    <div class="protocol-top">
+      <div class="protocol-title-wrap">
+        <div class="protocol-heading">🎯 Protocolo do Dia <span class="badge-week badge-current" id="protoBadge" style="margin-left: 4px;">Carregando</span></div>
+        <div class="protocol-sub" id="protoDayLabel">Sincronizando rotina de hoje...</div>
+      </div>
+      <div class="protocol-pills" id="protoPills">
+        <button type="button" class="proto-pill active" data-preset="today">Hoje</button>
+        <button type="button" class="proto-pill" data-preset="double">Seg/Ter/Qui</button>
+        <button type="button" class="proto-pill" data-preset="wednesday">Qua (Pernas)</button>
+        <button type="button" class="proto-pill" data-preset="friday">Sex (Pré-Longo)</button>
+        <button type="button" class="proto-pill" data-preset="saturday">Sáb (Longão)</button>
+      </div>
+    </div>
+
+    <div class="macro-strip" id="protoMacros">
+      <div class="macro-pill"><div class="macro-label">Calorias</div><div class="macro-val" id="macroKcal">-</div></div>
+      <div class="macro-pill"><div class="macro-label">Carboidrato</div><div class="macro-val" id="macroCarbs" style="color: var(--primary);">-</div></div>
+      <div class="macro-pill"><div class="macro-label">Proteína</div><div class="macro-val" id="macroProt" style="color: var(--accent);">-</div></div>
+      <div class="macro-pill"><div class="macro-label">Água Alvo</div><div class="macro-val" id="macroWater">-</div></div>
+    </div>
+
+    <div class="protocol-alerts" id="protoAlertsBox">
+      <div class="protocol-alerts-title">⚡ Pontos-Chave de Hoje</div>
+      <ul id="protoAlertsList">
+        <li>Carregando recomendações do dia...</li>
+      </ul>
+    </div>
+
+    <div class="meal-list" id="protoMealList">
+      <!-- Renderizado dinamicamente -->
+    </div>
+
+    <div class="gel-box" id="protoGelBox" style="display: none;">
+      <div class="gel-box-title">🔋 Protocolo de Géis / Intra-Treino</div>
+      <div id="protoGelList"></div>
+    </div>
+
+    <div class="alt-grid" id="protoAltGrid" style="display: none;"></div>
   </div>
 
   <!-- RECORDES PESSOAIS: RUA (GPS) COM DETALHAMENTO DE ESTEIRA NA BASE -->
@@ -200,42 +368,9 @@
         <div class="time" style="font-size: 20px; line-height: 26px; color: var(--primary);">Prova-Alvo</div>
         <div class="pace" style="margin-bottom: 2px;">Meta: Sub 2h00</div>
         <div class="pace" style="margin-bottom: 6px;">Ritmo: (&lt; 5'41")</div>
-        <div class="date">🎯 Abril / 2027</div>
+        <div class="date">🎯 04/04/2027 • SP</div>
       </div>
     </div>
-  </div>
-
-  <!-- PRONTIDÃO DO DIA -->
-  <div class="grid">
-    <div class="card">
-      <div class="title">FC Repouso</div>
-      <div class="value" id="valRestingHR">50 <span style="font-size: 13px; font-weight: normal; color: var(--muted);">bpm</span></div>
-      <div class="sub status-optimal" id="subRestingHR">✓ Estável e recuperada</div>
-    </div>
-    <div class="card">
-      <div class="title">Forma (TSB)</div>
-      <div class="value status-optimal" id="valTSB">0.0</div>
-      <div class="sub" id="subTSB">Neutro / Equilibrado</div>
-    </div>
-    <div class="card">
-      <div class="title">Fitness / Fadiga</div>
-      <div class="value" id="valFitness">0.4 <span style="font-size: 13px; font-weight: normal; color: var(--muted);">/ 1.6</span></div>
-      <div class="sub" id="subFitness">CTL / ATL Atual</div>
-    </div>
-    <div class="card workout-card">
-      <div class="title">Próximo Treino</div>
-      <div class="workout-title" id="valTodayWorkout">Carregando...</div>
-      <div class="workout-meta" id="subTodayWorkout">-</div>
-      <div id="warmupTagContainer"></div>
-    </div>
-  </div>
-
-  <!-- PARECER DO TREINADOR IA -->
-  <div class="coach-box">
-    <h2>🤖 Parecer do Treinador IA</h2>
-    <p id="coachText">
-      Carregando análise e prontidão em tempo real...
-    </p>
   </div>
 
   <!-- ACUMULADO POR SEMANA (SEGUNDA A DOMINGO) -->
@@ -279,7 +414,7 @@
     <div class="table-header-box">
       <div>
         <h3>Atividades Recentes</h3>
-        <div class="table-subtitle">Semana Passada (26/10 a 01/11) & Semana Atual (02/11 a 08/11)</div>
+        <div class="table-subtitle" id="activitiesSubtitle">Semana Passada & Semana Atual</div>
       </div>
     </div>
     <table>
@@ -376,6 +511,11 @@
         // 3. Prontidão
         if (data.readiness) {
           document.getElementById('valRestingHR').innerHTML = `${data.readiness.restingHR} <span style="font-size: 13px; font-weight: normal; color: var(--muted);">bpm</span>`;
+          if (data.readiness.restingHRSub) {
+            const subHR = document.getElementById('subRestingHR');
+            subHR.textContent = data.readiness.restingHRSub;
+            subHR.style.color = data.readiness.restingHROk === false ? 'var(--warning)' : 'var(--accent)';
+          }
           document.getElementById('valTSB').textContent = (data.readiness.tsb > 0 ? '+' : '') + data.readiness.tsb;
           document.getElementById('subTSB').textContent = data.readiness.formStatus || 'Equilibrado';
           document.getElementById('valFitness').innerHTML = `${data.readiness.ctl} <span style="font-size: 13px; font-weight: normal; color: var(--muted);">/ ${data.readiness.atl}</span>`;
@@ -402,6 +542,22 @@
           document.getElementById('coachText').innerHTML = data.coachAdvice.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
         }
 
+        // 5.5 Protocolo do Dia (Nutrição + Treino + Géis)
+        if (data.dailyProtocol) {
+          window.__protocolPresets = data.dailyProtocol.presets || {};
+          renderProtocol(data.dailyProtocol.today);
+          document.querySelectorAll('.proto-pill').forEach(btn => {
+            btn.addEventListener('click', () => {
+              const key = btn.getAttribute('data-preset');
+              const proto = window.__protocolPresets[key];
+              if (!proto) return;
+              document.querySelectorAll('.proto-pill').forEach(b => b.classList.remove('active'));
+              btn.classList.add('active');
+              renderProtocol(proto);
+            });
+          });
+        }
+
         // 6. Volume Semanal (Segunda a Domingo)
         if (data.volumeStats) {
           renderVolumeMonth('prev', data.volumeStats.previousMonth);
@@ -425,6 +581,9 @@
         }
 
         // 8. Tabela de Atividades: Semana Passada + Semana Atual
+        if (data.activitiesSubtitle) {
+          document.getElementById('activitiesSubtitle').textContent = data.activitiesSubtitle;
+        }
         if (data.recentActivities && data.recentActivities.length > 0) {
           const tbody = document.getElementById('activitiesTableBody');
           tbody.innerHTML = '';
@@ -446,6 +605,78 @@
       } catch (err) {
         console.warn('Erro ao carregar dados:', err);
         document.getElementById('syncText').textContent = 'Modo Offline / Cache';
+      }
+    }
+
+    function renderProtocol(proto) {
+      if (!proto) return;
+      document.getElementById('protoBadge').textContent = proto.badge || 'Hoje';
+      document.getElementById('protoDayLabel').textContent = proto.dayLabel || '';
+
+      if (proto.targets) {
+        document.getElementById('macroKcal').textContent = proto.targets.kcal || '-';
+        document.getElementById('macroCarbs').textContent = proto.targets.carbs || '-';
+        document.getElementById('macroProt').textContent = proto.targets.protein || '-';
+        document.getElementById('macroWater').textContent = proto.targets.water || '-';
+      }
+
+      const alertsList = document.getElementById('protoAlertsList');
+      alertsList.innerHTML = '';
+      (proto.alerts || []).forEach(a => {
+        const li = document.createElement('li');
+        li.textContent = a;
+        alertsList.appendChild(li);
+      });
+
+      const mealList = document.getElementById('protoMealList');
+      mealList.innerHTML = '';
+      (proto.meals || []).forEach(m => {
+        const row = document.createElement('div');
+        row.className = m.highlight ? 'meal-row is-key' : 'meal-row';
+        row.innerHTML = `
+          <div class="meal-time">${m.time}</div>
+          <div>
+            <div class="meal-title">${m.title}</div>
+            <div class="meal-detail">${m.detail}</div>
+          </div>
+        `;
+        mealList.appendChild(row);
+      });
+
+      const gelBox = document.getElementById('protoGelBox');
+      const gelList = document.getElementById('protoGelList');
+      if (proto.gels && proto.gels.length > 0) {
+        gelBox.style.display = 'block';
+        gelList.innerHTML = '';
+        proto.gels.forEach(g => {
+          const step = document.createElement('div');
+          step.className = 'gel-step';
+          step.innerHTML = `
+            <div><span class="gel-moment">${g.moment}:</span> <span class="gel-item">${g.item}</span></div>
+            <div class="gel-note">${g.note}</div>
+          `;
+          gelList.appendChild(step);
+        });
+      } else {
+        gelBox.style.display = 'none';
+      }
+
+      const altGrid = document.getElementById('protoAltGrid');
+      if (proto.alternatives && proto.alternatives.length > 0) {
+        altGrid.style.display = 'grid';
+        altGrid.innerHTML = '';
+        proto.alternatives.forEach(group => {
+          const box = document.createElement('div');
+          box.className = 'alt-box';
+          const chips = (group.items || []).map(it => `<span class="alt-chip">${it}</span>`).join('');
+          box.innerHTML = `
+            <div class="alt-title">🔄 ${group.title}</div>
+            <div class="alt-chips">${chips}</div>
+          `;
+          altGrid.appendChild(box);
+        });
+      } else {
+        altGrid.style.display = 'none';
       }
     }
 
@@ -473,6 +704,22 @@
         container.appendChild(row);
       });
     }
+
+    // Popover das métricas (hover no PC + toque/clique no celular)
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('.info-btn');
+      if (btn) {
+        e.stopPropagation();
+        const wrap = btn.closest('.info-wrap');
+        const wasOpen = wrap.classList.contains('open');
+        document.querySelectorAll('.info-wrap.open').forEach(el => el.classList.remove('open'));
+        if (!wasOpen) wrap.classList.add('open');
+        return;
+      }
+      if (!e.target.closest('.info-popover')) {
+        document.querySelectorAll('.info-wrap.open').forEach(el => el.classList.remove('open'));
+      }
+    });
 
     window.addEventListener('DOMContentLoaded', loadDashboardData);
   </script>
