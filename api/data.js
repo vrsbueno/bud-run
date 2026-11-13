@@ -356,8 +356,8 @@ export default async function handler(req, res) {
         badge: specificQuality ? "Treino de Qualidade" : "Rodagem Aeróbica",
         targets: {
           kcal: "~2.400 kcal",
-          carbs: "~285 g",
-          protein: "~155 g",
+          carbs: "~280 g",
+          protein: "~160 g",
           water: "3,5 L"
         },
         alerts: [
@@ -366,8 +366,8 @@ export default async function handler(req, res) {
           "PROIBIDO gel Z2+ com cafeína à noite (você já toma Évora PW às 17h00). Preserve seu sono."
         ],
         meals: [
-          { time: "07h30", title: "Café da Manhã", detail: "Shot matinal • 300ml leite semidesnatado + 300ml café • 2 ovos • 65g cuscuz (seco) • muçarela + ricota • 60g mamão + 60g melão + fibras + 30g iogurte • 6g creatina + UC2", highlight: true },
-          { time: "12h30", title: "Almoço", detail: "140g frango • 230g arroz • 50g feijão • Ômega 3 + Betaína/Pepsina + D3/K2", highlight: true },
+          { time: "07h30", title: "Café da Manhã", detail: "Shot matinal • 300ml leite semidesnatado + 300ml café • 2 ovos • 50g cuscuz (seco) • muçarela + ricota • 60g mamão + 60g melão + fibras + 30g iogurte • 6g creatina + UC2", highlight: true },
+          { time: "12h30", title: "Almoço", detail: "140g frango • 200g arroz • 50g feijão • Ômega 3 + Betaína/Pepsina + D3/K2", highlight: true },
           { time: "16h45", title: "Pré-Musculação", detail: "Base fixa: 300ml leite semidesnatado + 300ml café • 1 fatia muçarela • 100g banana prata c/ canela • Évora PW + 1 complemento abaixo", highlight: true },
           { time: "18h45–19h00", title: "Intra-Sessão (20–30 min antes da esteira)", detail: intraRunItem, highlight: true },
           { time: "20h45", title: "Jantar + Sobremesa", detail: "120g coxão mole • 150–180g carbo leve • salada + refri zero • 80g iogurte + 30g Whey + 1 pct Magic Toast (ou 1 col. sopa / 20g de geleia) • chá", highlight: true }
@@ -410,7 +410,7 @@ export default async function handler(req, res) {
           {
             title: "Se pesou no FDS (Ajuste Seg/Ter — sem cortar pré-treino)",
             items: [
-              "Café: cuscuz 65g ➡️ 45g (seco) • Almoço: arroz 230g ➡️ 170g",
+              "Café: cuscuz 50g ➡️ 35g (seco) • Almoço: arroz 200g ➡️ 150g",
               "Jantar: carbo 150–180g ➡️ 100–120g • Água: 3,5L",
               "Mantenha 100% intactos: proteína, pré (16h45) e intra (18h45)"
             ]
@@ -426,18 +426,18 @@ export default async function handler(req, res) {
         badge: "Proteção Patelar & Recuperação",
         targets: {
           kcal: "~2.150 kcal",
-          carbs: "~220 g",
-          protein: "~155 g",
+          carbs: "~215 g",
+          protein: "~160 g",
           water: "3,0 L"
         },
         alerts: [
           "Treino de pernas mantendo 2–3 repetições na reserva (evite falha para não travar a corrida de quinta).",
           "Foco preventivo na condromalácia: priorize glúteo médio/máximo e isometria sem dor patelar.",
-          "Sem esteira hoje: reduza levemente o arroz do almoço (200g) e o carbo do jantar (130g) mantendo a proteína alta."
+          "Sem esteira hoje: reduza o arroz do almoço (170g) e o carbo do jantar (130g) mantendo a proteína alta."
         ],
         meals: [
-          { time: "07h30", title: "Café da Manhã", detail: "Shot matinal • 300ml leite semidesnatado + 300ml café • 2 ovos • 65g cuscuz (seco) • muçarela + ricota • 60g mamão + 60g melão + fibras • 6g creatina + UC2", highlight: false },
-          { time: "12h30", title: "Almoço", detail: "140g frango • 200g arroz • 50g feijão • Ômega 3 + Betaína/Pepsina + D3/K2", highlight: true },
+          { time: "07h30", title: "Café da Manhã", detail: "Shot matinal • 300ml leite semidesnatado + 300ml café • 2 ovos • 50g cuscuz (seco) • muçarela + ricota • 60g mamão + 60g melão + fibras • 6g creatina + UC2", highlight: false },
+          { time: "12h30", title: "Almoço", detail: "140g frango • 170g arroz • 50g feijão • Ômega 3 + Betaína/Pepsina + D3/K2", highlight: true },
           { time: "16h45", title: "Pré-Treino Pernas", detail: "Base fixa: 300ml leite semidesnatado + 300ml café • 1 fatia muçarela • 100g banana prata c/ canela • Évora PW + 1 complemento abaixo", highlight: false },
           { time: "20h30", title: "Jantar + Sobremesa", detail: "120g coxão mole • 130g carbo leve • salada + refri zero • 80g iogurte + 30g Whey + 1 pct Magic Toast • chá", highlight: true }
         ],
@@ -474,8 +474,8 @@ export default async function handler(req, res) {
         badge: "Carb-Loading Leve",
         targets: {
           kcal: "~2.350 kcal",
-          carbs: "~270 g+",
-          protein: "~150 g",
+          carbs: "~265 g+",
+          protein: "~155 g",
           water: "3,0 L"
         },
         alerts: [
@@ -484,8 +484,8 @@ export default async function handler(req, res) {
           "Durma cedo (meta 7h30–8h de sono) e separe os géis e a água para amanhã de manhã."
         ],
         meals: [
-          { time: "07h30", title: "Café da Manhã", detail: "Shot matinal • 300ml leite semidesnatado + 300ml café • 2 ovos • 65g cuscuz (seco) • muçarela + ricota • frutas + fibras • 6g creatina + UC2", highlight: false },
-          { time: "12h30", title: "Almoço", detail: "140g frango • 200g arroz • 50g feijão • Ômega 3 + Betaína/Pepsina + D3/K2", highlight: false },
+          { time: "07h30", title: "Café da Manhã", detail: "Shot matinal • 300ml leite semidesnatado + 300ml café • 2 ovos • 50g cuscuz (seco) • muçarela + ricota • frutas + fibras • 6g creatina + UC2", highlight: false },
+          { time: "12h30", title: "Almoço", detail: "140g frango • 170g arroz • 50g feijão • Ômega 3 + Betaína/Pepsina + D3/K2", highlight: false },
           { time: "16h45", title: "Lanche da Tarde", detail: "Base fixa: 300ml leite semidesnatado + 300ml café • 1 fatia muçarela • 100g banana prata c/ canela + 1 complemento abaixo", highlight: false },
           { time: "20h30", title: "Jantar Pré-Longão", detail: "4 esfihas abertas (carne/frango) OU 100g macarrão (cru) com 1 lata de atum e molho • refri zero • chá antes de dormir", highlight: true }
         ],
@@ -577,7 +577,7 @@ export default async function handler(req, res) {
             items: [
               "Melhor janela: almoço de Sábado pós-longão (músculos absorvem melhor)",
               "Vai jantar pesado? Faça o almoço limpo (só proteína magra + salada)",
-              "Se exagerar: ajuste Seg/Ter reduzindo só cuscuz (45g), arroz (170g) e carbo do jantar (110g)"
+              "Se exagerar: ajuste Seg/Ter reduzindo só cuscuz (35g), arroz (150g) e carbo do jantar (110g)"
             ]
           }
         ]
@@ -611,7 +611,7 @@ export default async function handler(req, res) {
             items: [
               "Vai jantar pesado? Almoce limpo (proteína magra + salada, sem carbo/gordura extra)",
               "Beba 3,5L de água + caminhada leve (30–40 min) se almoçar pesado",
-              "Se exagerar: ajuste Seg/Ter reduzindo só cuscuz (45g), arroz (170g) e carbo do jantar (110g)"
+              "Se exagerar: ajuste Seg/Ter reduzindo só cuscuz (35g), arroz (150g) e carbo do jantar (110g)"
             ]
           }
         ]
