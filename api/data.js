@@ -474,20 +474,20 @@ export default async function handler(req, res) {
         badge: "Carb-Loading Leve",
         targets: {
           kcal: "~2.350 kcal",
-          carbs: "~265 g+",
-          protein: "~155 g",
+          carbs: "~270 g+",
+          protein: "~160 g",
           water: "3,0 L"
         },
         alerts: [
           `${satInfo} O objetivo hoje é encher o tanque de glicogênio sem desconforto gástrico.`,
           "Jantar livre estratégico: 4 esfihas abertas (carne/frango) ou 100g macarrão (cru) com atum e molho.",
-          "Durma cedo (meta 7h30–8h de sono) e separe os géis e a água para amanhã de manhã."
+          "Sobremesa: mantenha 80g iogurte + 30g Whey. Use 1 pct Magic Toast apenas se jantar o macarrão (dispense se comer esfihas)."
         ],
         meals: [
           { time: "07h30", title: "Café da Manhã", detail: "Shot matinal • 300ml leite semidesnatado + 300ml café • 2 ovos • 50g cuscuz (seco) • muçarela + ricota • frutas + fibras • 6g creatina + UC2", highlight: false },
           { time: "12h30", title: "Almoço", detail: "140g frango • 170g arroz • 50g feijão • Ômega 3 + Betaína/Pepsina + D3/K2", highlight: false },
           { time: "16h45", title: "Lanche da Tarde", detail: "Base fixa: 300ml leite semidesnatado + 300ml café • 1 fatia muçarela • 100g banana prata c/ canela + 1 complemento abaixo", highlight: false },
-          { time: "20h30", title: "Jantar Pré-Longão", detail: "4 esfihas abertas (carne/frango) OU 100g macarrão (cru) com 1 lata de atum e molho • refri zero • chá antes de dormir", highlight: true }
+          { time: "20h30", title: "Jantar Pré-Longão + Sobremesa", detail: "4 esfihas abertas (carne/frango) OU 100g macarrão (cru) com 1 lata de atum e molho • refri zero • 80g iogurte + 30g Whey (+ 1 pct Magic Toast só se for macarrão) • chá", highlight: true }
         ],
         gels: [],
         alternatives: [
