@@ -75,9 +75,16 @@
     .warmup-tag { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; background: rgba(56, 189, 248, 0.15); color: var(--primary); border: 1px solid rgba(56, 189, 248, 0.3); padding: 3px 8px; border-radius: 6px; font-weight: 600; }
 
     /* Coach Box */
-    .coach-box { background: linear-gradient(135deg, rgba(56, 189, 248, 0.12), rgba(16, 185, 129, 0.06)); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 12px; padding: 16px; margin-bottom: 20px; }
+    .coach-box { background: linear-gradient(135deg, rgba(56, 189, 248, 0.12), rgba(16, 185, 129, 0.06)); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 12px; padding: 16px; margin-bottom: 14px; }
     .coach-box h2 { font-size: 14px; color: var(--primary); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
     .coach-box p { font-size: 13px; line-height: 1.55; color: #e2e8f0; }
+
+    /* Objetivo do Plano Box */
+    .goal-box { background: rgba(30, 41, 59, 0.75); border: 1px solid rgba(251, 191, 36, 0.35); border-radius: 12px; padding: 14px 16px; margin-bottom: 20px; }
+    .goal-box-title { font-size: 12px; font-weight: 800; color: var(--gold); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+    .goal-pills { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; }
+    .goal-item { background: rgba(15, 23, 42, 0.65); border: 1px solid rgba(51, 65, 85, 0.75); border-radius: 8px; padding: 8px 10px; font-size: 12px; line-height: 1.4; color: #e2e8f0; }
+    .goal-item strong { color: #fff; display: block; font-size: 12px; margin-bottom: 2px; }
 
     /* Protocolo do Dia (Treino + Nutrição + Géis) */
     .protocol-card { background: linear-gradient(145deg, #1a2639, #131d2e); border: 1px solid rgba(16, 185, 129, 0.4); border-radius: 14px; padding: 16px; margin-bottom: 24px; }
@@ -285,6 +292,25 @@
     <div class="alt-grid" id="protoAltGrid" style="display: none;"></div>
   </div>
 
+  <!-- OBJETIVO DO PLANO -->
+  <div class="goal-box">
+    <div class="goal-box-title">🧭 Objetivo deste Protocolo (Treino + Dieta)</div>
+    <div class="goal-pills">
+      <div class="goal-item">
+        <strong>🔥 Secar com Controle</strong>
+        Déficit calórico leve (~2.400 kcal nos dias úteis) para reduzir gordura gradualmente sem passar fome nem derrubar a energia.
+      </div>
+      <div class="goal-item">
+        <strong>💪 Manter Massa Magra</strong>
+        ~160g proteína/dia preservando as cargas de musculação e mantendo fixas as proteínas do almoço (140g frango) e jantar (120g carne).
+      </div>
+      <div class="goal-item">
+        <strong>🏃‍♂️ Disposição na Corrida</strong>
+        Carboidratos concentrados ao redor do treino (16h45, 18h45 e jantar) rumo à Meia Maratona de SP (04/04/27 • Sub 2h00) e 28 Praias (24/04/27).
+      </div>
+    </div>
+  </div>
+
   <!-- RECORDES PESSOAIS: RUA (GPS) COM DETALHAMENTO DE ESTEIRA NA BASE -->
   <div class="section-title">
     🏆 Melhores Marcas Pessoais (Recordes)
@@ -437,7 +463,8 @@
   </div>
 
   <div class="footer" id="footerText">
-    bud-run • Atualizado automaticamente via Intervals.icu API (Horário de Brasília)
+    <div>bud-run • Compilado em 13/11/2026 às 18:22 (BRT)</div>
+    <div style="margin-top: 4px;">Atualizado automaticamente via Intervals.icu API</div>
   </div>
 
   <script>
