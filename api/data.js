@@ -366,9 +366,9 @@ export default async function handler(req, res) {
           "PROIBIDO gel Z2+ com cafeína à noite (você já toma Évora PW às 17h00). Preserve seu sono."
         ],
         meals: [
-          { time: "07h30", title: "Café da Manhã", detail: "Shot matinal • 200ml café+leite • 2 ovos • 65g cuscuz (seco) • muçarela + ricota • 60g mamão + 60g melão + fibras + 30g iogurte • 6g creatina + UC2", highlight: true },
+          { time: "07h30", title: "Café da Manhã", detail: "Shot matinal • 300ml leite semidesnatado + 300ml café • 2 ovos • 65g cuscuz (seco) • muçarela + ricota • 60g mamão + 60g melão + fibras + 30g iogurte • 6g creatina + UC2", highlight: true },
           { time: "12h30", title: "Almoço", detail: "140g frango • 230g arroz • 50g feijão • Ômega 3 + Betaína/Pepsina + D3/K2", highlight: true },
-          { time: "16h45", title: "Pré-Musculação", detail: "Base fixa: 200ml café+leite • 1 fatia muçarela • 80g banana prata c/ canela • Évora PW + 1 complemento abaixo", highlight: true },
+          { time: "16h45", title: "Pré-Musculação", detail: "Base fixa: 300ml leite semidesnatado + 300ml café • 1 fatia muçarela • 100g banana prata c/ canela • Évora PW + 1 complemento abaixo", highlight: true },
           { time: "18h45–19h00", title: "Intra-Sessão (20–30 min antes da esteira)", detail: intraRunItem, highlight: true },
           { time: "20h45", title: "Jantar + Sobremesa", detail: "120g coxão mole • 150–180g carbo leve • salada + refri zero • 80g iogurte + 30g Whey + 1 pct Magic Toast (ou 1 col. sopa / 20g de geleia) • chá", highlight: true }
         ],
@@ -436,9 +436,9 @@ export default async function handler(req, res) {
           "Sem esteira hoje: reduza levemente o arroz do almoço (200g) e o carbo do jantar (130g) mantendo a proteína alta."
         ],
         meals: [
-          { time: "07h30", title: "Café da Manhã", detail: "Shot matinal • 200ml café+leite • 2 ovos • 65g cuscuz (seco) • muçarela + ricota • 60g mamão + 60g melão + fibras • 6g creatina + UC2", highlight: false },
+          { time: "07h30", title: "Café da Manhã", detail: "Shot matinal • 300ml leite semidesnatado + 300ml café • 2 ovos • 65g cuscuz (seco) • muçarela + ricota • 60g mamão + 60g melão + fibras • 6g creatina + UC2", highlight: false },
           { time: "12h30", title: "Almoço", detail: "140g frango • 200g arroz • 50g feijão • Ômega 3 + Betaína/Pepsina + D3/K2", highlight: true },
-          { time: "16h45", title: "Pré-Treino Pernas", detail: "Base fixa: 200ml café+leite • 1 fatia muçarela • 80g banana prata c/ canela • Évora PW + 1 complemento abaixo", highlight: false },
+          { time: "16h45", title: "Pré-Treino Pernas", detail: "Base fixa: 300ml leite semidesnatado + 300ml café • 1 fatia muçarela • 100g banana prata c/ canela • Évora PW + 1 complemento abaixo", highlight: false },
           { time: "20h30", title: "Jantar + Sobremesa", detail: "120g coxão mole • 130g carbo leve • salada + refri zero • 80g iogurte + 30g Whey + 1 pct Magic Toast • chá", highlight: true }
         ],
         gels: [],
@@ -480,14 +480,14 @@ export default async function handler(req, res) {
         },
         alerts: [
           `${satInfo} O objetivo hoje é encher o tanque de glicogênio sem desconforto gástrico.`,
-          "Jantar livre estratégico: 4 esfihas abertas (carne/frango) ou macarrão com atum e molho.",
+          "Jantar livre estratégico: 4 esfihas abertas (carne/frango) ou 100g macarrão (cru) com atum e molho.",
           "Durma cedo (meta 7h30–8h de sono) e separe os géis e a água para amanhã de manhã."
         ],
         meals: [
-          { time: "07h30", title: "Café da Manhã", detail: "Shot matinal • 200ml café+leite • 2 ovos • 65g cuscuz (seco) • muçarela + ricota • frutas + fibras • 6g creatina + UC2", highlight: false },
+          { time: "07h30", title: "Café da Manhã", detail: "Shot matinal • 300ml leite semidesnatado + 300ml café • 2 ovos • 65g cuscuz (seco) • muçarela + ricota • frutas + fibras • 6g creatina + UC2", highlight: false },
           { time: "12h30", title: "Almoço", detail: "140g frango • 200g arroz • 50g feijão • Ômega 3 + Betaína/Pepsina + D3/K2", highlight: false },
-          { time: "16h45", title: "Lanche da Tarde", detail: "Base fixa: 200ml café+leite • 1 fatia muçarela • 80g banana prata c/ canela + 1 complemento abaixo", highlight: false },
-          { time: "20h30", title: "Jantar Pré-Longão", detail: "4 esfihas abertas (carne/frango) OU macarrão com atum e molho • refri zero • chá antes de dormir", highlight: true }
+          { time: "16h45", title: "Lanche da Tarde", detail: "Base fixa: 300ml leite semidesnatado + 300ml café • 1 fatia muçarela • 100g banana prata c/ canela + 1 complemento abaixo", highlight: false },
+          { time: "20h30", title: "Jantar Pré-Longão", detail: "4 esfihas abertas (carne/frango) OU 100g macarrão (cru) com 1 lata de atum e molho • refri zero • chá antes de dormir", highlight: true }
         ],
         gels: [],
         alternatives: [
@@ -504,7 +504,7 @@ export default async function handler(req, res) {
             title: "Opções de Jantar Carb-Loading (Sexta)",
             items: [
               "4 esfihas abertas (carne e frango)",
-              "Macarrão com atum e molho de tomate",
+              "100g macarrão (cru) com 1 lata de atum e molho (120g cru se longão ≥ 18 km)",
               "Ou prato reforçado: 220g arroz + 140g frango"
             ]
           }
@@ -549,7 +549,7 @@ export default async function handler(req, res) {
           "Pós-treino e resto do fim de semana livres com bom senso: mantenha proteína e não exagere nas gorduras."
         ],
         meals: [
-          { time: "07h00", title: "Café Pré-Longão (90–120 min antes)", detail: `200ml café • ${isLongPlus ? "100g banana prata + 1 col. sopa (21g) de mel" : "80g banana prata + 1 col. sobremesa (14g) de mel"} • 1 Paçoquita • 1 pct Magic Toast com ${isLongPlus ? "1 col. sopa cheia (20g) + 1 col. chá (7g)" : "1 col. sopa (20g)"} de geleia caseira • 5–10g pó de beterraba • 6g creatina + UC2`, highlight: true },
+          { time: "07h00", title: "Café Pré-Longão (90–120 min antes)", detail: `200ml café • 100g banana prata + ${isLongPlus ? "1 col. sopa (21g)" : "1 col. sobremesa (14g)"} de mel • 1 Paçoquita • 1 pct Magic Toast com ${isLongPlus ? "1 col. sopa cheia (20g) + 1 col. chá (7g)" : "1 col. sopa (20g)"} de geleia caseira • 5–10g pó de beterraba • 6g creatina + UC2`, highlight: true },
           { time: "08h30–09h00", title: "Durante o Longão (Intra)", detail: isLongPlus ? "Géis nos horários abaixo + 500ml de água ao longo do percurso" : "350 a 500ml de água em pequenos goles", highlight: true },
           { time: "Pós-Treino", title: "Almoço & Fim de Semana", detail: "Livre controlado: priorize boa fonte de proteína + carboidrato para recuperar o longão", highlight: false }
         ],
