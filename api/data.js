@@ -368,7 +368,13 @@ export default async function handler(req, res) {
           { time: "12h30", title: "Almoço", detail: "140g frango • 200g arroz • 50g feijão • Ômega 3 + Betaína/Pepsina + D3/K2", highlight: true },
           { time: "16h45", title: "Pré-Musculação", detail: "Base fixa: 300ml leite semidesnatado + 300ml café • 1 fatia muçarela • 100g banana prata c/ canela • Évora PW + 1 complemento abaixo", highlight: true },
           { time: "18h45", title: "Intra-Sessão (30 min antes da esteira)", detail: intraRunItem, highlight: true },
-          { time: "20h45", title: "Jantar + Sobremesa", detail: "120g coxão mole • 150–180g carbo leve • salada + refri zero • 80g iogurte + 30g Whey • chá", highlight: true }
+          {
+            time: "20h45",
+            title: "Jantar + Sobremesa",
+            detail: "120g coxão mole • 150–180g carbo leve • salada + refri zero • 80g iogurte + 30g Whey • chá",
+            note: "Quer 1 pct Magic Toast à noite c/ Whey? Reduza o cuscuz da manhã de 60g ➡️ 40g (seco) ou troque por 1 pão de sal (50g).",
+            highlight: true
+          }
         ],
         gels: [
           { moment: "18h45 (30 min antes da esteira)", item: "Bananinha Tachão Sem Açúcar", note: "~20g carbo natural • fixa Seg/Ter/Qui (géis ficam para Sábado)" }
@@ -390,15 +396,13 @@ export default async function handler(req, res) {
             items: [
               "A: 1 pct inteiro Magic Toast (6 unid.) + 1 col. sopa (20g) Doce de Leite Zero Junco",
               "B: 1 pct inteiro Magic Toast (6 unid.) com 1 col. sobremesa (13g) geleia caseira",
-              "C: 1 col. sopa (20g) Doce de Leite Zero + 1 Bananinha Tachão Sem Açúcar"
+              "C: 1 col. sopa (20g) Doce de Leite Zero + 1 Bananinha Tachão Sem Açúcar",
+              "D: 1 Paçoquita (15g) + 1 col. sopa (20g) Doce de Leite Zero (ou pura c/ a banana)"
             ]
           },
           {
-            title: "Sobremesa (20h45) & Intra (18h45)",
+            title: "Intra-Sessão Fixo (18h45)",
             items: [
-              "Sobremesa fixa: 80g iogurte Pense Zero + 30g Whey",
-              "Quer 1 pct Magic Toast à noite c/ Whey? Reduza o cuscuz da manhã de 60g ➡️ 40g (seco) OU troque por 1 pão de sal (50g)",
-              "Equivalência Café: 60g cuscuz (seco) = 1,5 pão de sal (~75g) ou 1 pão de sal (50g) + 1 pct Magic Toast à noite",
               "Intra fixo (Seg/Ter/Qui): 1x Bananinha Tachão Sem Açúcar (30 min antes da esteira)"
             ]
           },
@@ -434,7 +438,13 @@ export default async function handler(req, res) {
           { time: "07h30", title: "Café da Manhã", detail: "Shot matinal • 300ml leite semidesnatado + 300ml café • 2 ovos • 60g cuscuz (seco) (ou 1,5 pão de sal / 75g) • muçarela + ricota • 80g mamão + 120g melão + fibras + 30g iogurte • 6g creatina + UC2", highlight: false },
           { time: "12h30", title: "Almoço", detail: "140g frango • 170g arroz • 50g feijão • Ômega 3 + Betaína/Pepsina + D3/K2", highlight: true },
           { time: "16h45", title: "Pré-Treino Pernas", detail: "Base fixa: 300ml leite semidesnatado + 300ml café • 1 fatia muçarela • 100g banana prata c/ canela • Évora PW + 1 complemento abaixo", highlight: false },
-          { time: "20h30", title: "Jantar + Sobremesa", detail: "120g coxão mole • 130g carbo leve • salada + refri zero • 80g iogurte + 30g Whey • chá", highlight: true }
+          {
+            time: "20h30",
+            title: "Jantar + Sobremesa",
+            detail: "120g coxão mole • 130g carbo leve • salada + refri zero • 80g iogurte + 30g Whey • chá",
+            note: "Quer 1 pct Magic Toast à noite c/ Whey? Reduza o cuscuz da manhã de 60g ➡️ 40g (seco) ou troque por 1 pão de sal (50g).",
+            highlight: true
+          }
         ],
         gels: [],
         alternatives: [
@@ -453,7 +463,7 @@ export default async function handler(req, res) {
               "A: 1 pct inteiro Magic Toast (6 unid.) + 1 col. sopa (20g) Doce de Leite Zero Junco",
               "B: 1 pct inteiro Magic Toast (6 unid.) com 1 col. sobremesa (13g) geleia caseira",
               "C: 1 Bananinha Tachão Sem Açúcar",
-              "Sobremesa (20h30): se quiser 1 pct Magic Toast à noite c/ Whey, reduza cuscuz da manhã de 60g ➡️ 40g (seco) ou troque por 1 pão de sal (50g)"
+              "D: 1 Paçoquita (15g) (pura c/ a banana ou + 1 col. sopa / 20g Doce de Leite Zero)"
             ]
           }
         ]
@@ -492,7 +502,8 @@ export default async function handler(req, res) {
             items: [
               "A: 1 pct inteiro Magic Toast (6 unid.) + 1 col. sopa (20g) Doce de Leite Zero Junco",
               "B: 1 pct inteiro Magic Toast (6 unid.) com 1 col. sobremesa (13g) geleia caseira",
-              "C: 1 col. sopa (20g) Doce de Leite Zero + 1 Bananinha Tachão Sem Açúcar"
+              "C: 1 col. sopa (20g) Doce de Leite Zero + 1 Bananinha Tachão Sem Açúcar",
+              "D: 1 Paçoquita (15g) + 1 col. sopa (20g) Doce de Leite Zero (ou pura c/ a banana)"
             ]
           },
           {

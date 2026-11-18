@@ -113,7 +113,9 @@
     .meal-row.is-key { border-left: 3px solid var(--accent); }
     .meal-time { font-size: 11px; font-weight: 800; color: var(--primary); padding-top: 2px; }
     .meal-title { font-size: 12px; font-weight: 700; color: #fff; margin-bottom: 2px; }
-    .meal-detail { font-size: 12px; color: #cbd5e1; line-height: 1.4; }
+    .meal-detail { font-size: 12px; color: #cbd5e1; line-height: 1.45; white-space: pre-line; }
+    .meal-note { margin-top: 7px; font-size: 11px; color: #e2e8f0; background: rgba(30, 41, 59, 0.9); border: 1px dashed rgba(251, 191, 36, 0.45); border-radius: 7px; padding: 6px 10px; line-height: 1.4; }
+    .meal-note strong { color: var(--gold); }
 
     .gel-box { margin-top: 12px; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 10px; padding: 10px 12px; }
     .gel-box-title { font-size: 11px; font-weight: 800; color: var(--primary); text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 6px; }
@@ -167,6 +169,41 @@
     .badge-week { padding: 2px 6px; border-radius: 4px; font-size: 9px; font-weight: 700; text-transform: uppercase; }
     .badge-current { background: rgba(16, 185, 129, 0.15); color: var(--accent); border: 1px solid rgba(16, 185, 129, 0.3); }
     .badge-last { background: rgba(148, 163, 184, 0.12); color: var(--muted); border: 1px solid rgba(148, 163, 184, 0.2); }
+
+    /* Análise Geral Global (Final da Página) */
+    .global-card { background: linear-gradient(145deg, #1a2436, #131b2b); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 14px; padding: 18px; margin-bottom: 24px; }
+    .global-card-header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 14px; border-bottom: 1px solid rgba(51, 65, 85, 0.6); padding-bottom: 10px; }
+    .global-card-title { font-size: 14px; font-weight: 800; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 6px; }
+    .global-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+    .global-box { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(51, 65, 85, 0.75); border-radius: 10px; padding: 12px; }
+    .global-box h4 { font-size: 12px; font-weight: 800; color: var(--gold); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.4px; }
+    .global-box ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .global-box li { font-size: 12px; color: #cbd5e1; line-height: 1.45; padding-left: 12px; position: relative; }
+    .global-box li::before { content: "•"; color: var(--primary); font-weight: 900; position: absolute; left: 0; }
+    .global-box li strong { color: #fff; }
+    .global-verdict { margin-top: 12px; background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 8px; padding: 10px 12px; font-size: 12px; color: #e2e8f0; line-height: 1.5; }
+    .global-verdict strong { color: var(--accent); }
+
+    /* Botão e Pop-up (Modal) da Ficha de Musculação */
+    .header-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; justify-content: flex-end; }
+    .gym-btn { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 700; color: var(--primary); background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.4); padding: 5px 11px; border-radius: 9999px; cursor: pointer; white-space: nowrap; transition: all 0.15s ease; }
+    .gym-btn:hover { background: rgba(56, 189, 248, 0.22); transform: translateY(-1px); }
+
+    .modal-backdrop { display: none; position: fixed; inset: 0; background: rgba(2, 6, 23, 0.82); backdrop-filter: blur(4px); z-index: 100; padding: 16px; align-items: center; justify-content: center; }
+    .modal-backdrop.open { display: flex; }
+    .modal-box { background: #162032; border: 1px solid rgba(56, 189, 248, 0.45); border-radius: 14px; width: 100%; max-width: 620px; max-height: 88vh; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65); }
+    .modal-head { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; border-bottom: 1px solid var(--border); background: #111827; }
+    .modal-title { font-size: 15px; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 6px; }
+    .modal-close { background: rgba(51, 65, 85, 0.5); border: 1px solid var(--border); color: #e2e8f0; width: 28px; height: 28px; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
+    .modal-close:hover { border-color: var(--primary); color: var(--primary); }
+    .modal-tabs { display: flex; flex-wrap: wrap; gap: 6px; padding: 12px 16px 8px; border-bottom: 1px solid rgba(51, 65, 85, 0.5); }
+    .modal-body { padding: 14px 16px 18px; overflow-y: auto; }
+    .gym-note { font-size: 11px; color: var(--gold); background: rgba(251, 191, 36, 0.08); border: 1px dashed rgba(251, 191, 36, 0.35); border-radius: 8px; padding: 8px 10px; margin-bottom: 12px; line-height: 1.4; }
+    .gym-table { width: 100%; border-collapse: collapse; font-size: 12px; min-width: 0; }
+    .gym-table th { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); color: var(--muted); font-size: 11px; }
+    .gym-table td { padding: 8px; border-bottom: 1px solid rgba(51, 65, 85, 0.45); color: #e2e8f0; }
+    .gym-table td:first-child { font-weight: 600; color: #fff; }
+    .gym-table tr:last-child td { border-bottom: none; }
     
     .footer { text-align: center; font-size: 11px; color: var(--muted); }
   </style>
@@ -177,9 +214,12 @@
       <h1>Painel de Treinamento</h1>
       <div class="subtitle" id="headerSubtitle">Victor Rafael • Horário de Brasília</div>
     </div>
-    <div class="status" id="syncStatus">
-      <span style="display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--accent);"></span>
-      <span id="syncText">Sincronizado</span>
+    <div class="header-actions">
+      <button type="button" class="gym-btn" id="openGymModalBtn">🏋️‍♂️ Ficha Academia</button>
+      <div class="status" id="syncStatus">
+        <span style="display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--accent);"></span>
+        <span id="syncText">Sincronizado</span>
+      </div>
     </div>
   </div>
 
@@ -462,8 +502,68 @@
     </table>
   </div>
 
+  <!-- ANÁLISE GERAL GLOBAL: TREINOS + ALIMENTAÇÃO -->
+  <div class="global-card">
+    <div class="global-card-header">
+      <div class="global-card-title">🧠 Análise Geral Global: Treinos + Alimentação</div>
+      <span class="badge-week badge-current">75 kg • 1,69 m • ~17% BF</span>
+    </div>
+
+    <div class="global-grid">
+      <div class="global-box">
+        <h4>🏋️‍♂️ Musculação (A-B-C-A-B) + Corrida</h4>
+        <ul>
+          <li><strong>Seg &amp; Qui (Série A — Peito/Tríceps/Abd):</strong> Cobre os 3 ângulos do peito + core em pé antes da esteira. Na quinta, deixe 1–2 reps na reserva no Strip Set/Declinado para render bem na corrida.</li>
+          <li><strong>Ter &amp; Sex (Série B — Costas/Bíceps/Core):</strong> <em>Voador Inverso</em>, <em>Elevação de Pernas</em> e <em>Prancha</em> sustentam a postura da corrida. O treino completo de abdômen fica na <strong>terça</strong>; na <strong>sexta à noite</strong> pegue leve no core (ou dispense) para não fadigar antes do longão de sábado de manhã.</li>
+          <li><strong>Qua (Série C — Perna/Ombro, sem corrida):</strong> <em>Leg 45</em> e <em>Afundo Smith</em> ajustados em descida controlada de 3" + <em>Extensora Unilateral</em> + <em>Glúteo Polia</em> + <em>Panturrilha 2x+2x</em> (protege condromalácia patelar e canelite sem travar quinta/sábado).</li>
+          <li><strong>Sáb (Longão na Rua):</strong> Pernas descansadas há 72h; inclinação 0,5%–1% na esteira nos dias úteis protege a tíbia.</li>
+        </ul>
+      </div>
+
+      <div class="global-box">
+        <h4>🍽️ Macronutrientes (~2.400 kcal Úteis)</h4>
+        <ul>
+          <li><strong>Proteína (~160 g | 2,13 g/kg):</strong> Ovos, frango (140g), coxão mole (120g), 600 ml leite semidesnatado, iogurte e 30g Whey mantêm 100% da massa magra em déficit leve.</li>
+          <li><strong>Carboidrato (~275 g | 3,67 g/kg):</strong> Distribuído ao redor do treino (60g cuscuz manhã ➡️ ~200g arroz marmita ➡️ 100g banana + complemento 16h45 ➡️ Bananinha Tachão 18h45 ➡️ 150–180g carbo no jantar). Zero corrida no vazio.</li>
+          <li><strong>Gordura (~60 g | 0,8 g/kg):</strong> Equilibrada para perfil hormonal sem atrasar a digestão pré-esteira.</li>
+          <li><strong>FDS &amp; Longões:</strong> Carb-loading leve sexta à noite + 100g banana, pó de beterraba (07h00) e géis (VO2 C30 / Z2+) no sábado.</li>
+        </ul>
+      </div>
+
+      <div class="global-box">
+        <h4>🧬 Micronutrientes &amp; Suplementação</h4>
+        <ul>
+          <li><strong>Proteção Óssea &amp; Articular:</strong> ~900–1.000 mg de Cálcio/dia (leite/queijos/iogurte) + <strong>D3 5.000 UI + K2 MK7</strong> + <strong>Ômega-3</strong> + <strong>UC-II</strong> blindam tíbia (canelite) e patela (condromalácia).</li>
+          <li><strong>Ferro, Zinco, Potássio &amp; Fibras:</strong> Coxão mole, feijão, banana (100g), mamão (80g), melão (120g), chia, linhaça e psyllium (~25–30g fibras/dia).</li>
+          <li><strong>Magnésio &amp; Folato:</strong> Priorize folhas verde-escuras (rúcula, espinafre, couve, brócolis) na salada livre do jantar.</li>
+          <li><strong>Hidratação &amp; Sódio:</strong> 3,0–3,5 L água/dia + 200 mg sódio por gel Z2+ nos longões ≥ 15 km + 6g Creatina diária.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="global-verdict">
+      <strong>✅ Veredito Global:</strong> O conjunto <strong>Dieta (~2.400 kcal bem distribuídas) + Suplementação + Divisão A-B-C-A-B ajustada</strong> forma uma base sólida para secar devagar, preservar força/massa magra e evoluir com segurança até a <strong>Meia Maratona de SP (04/04/27 • Sub 2h00)</strong> e o <strong>Desafio 28 Praias (24/04/27)</strong>.
+    </div>
+  </div>
+
   <div class="footer" id="footerText">
-    bud-run • Compilado em 18/11/2026 às 10:24 (BRT) • Atualizado automaticamente via Intervals.icu API
+    bud-run • Compilado em 18/11/2026 às 14:03 (BRT) • Atualizado automaticamente via Intervals.icu API
+  </div>
+
+  <!-- MODAL / POP-UP DA FICHA DE MUSCULAÇÃO -->
+  <div class="modal-backdrop" id="gymModal" role="dialog" aria-modal="true" aria-labelledby="gymModalTitle">
+    <div class="modal-box">
+      <div class="modal-head">
+        <div class="modal-title" id="gymModalTitle">🏋️‍♂️ Ficha de Musculação (A-B-C-A-B)</div>
+        <button type="button" class="modal-close" id="closeGymModalBtn" aria-label="Fechar">✕</button>
+      </div>
+      <div class="modal-tabs" id="gymTabs">
+        <button type="button" class="proto-pill active" data-gym="A">Série A (Seg/Qui)</button>
+        <button type="button" class="proto-pill" data-gym="B">Série B (Ter/Sex)</button>
+        <button type="button" class="proto-pill" data-gym="C">Série C (Qua)</button>
+      </div>
+      <div class="modal-body" id="gymModalBody"></div>
+    </div>
   </div>
 
   <script>
@@ -659,11 +759,13 @@
       (proto.meals || []).forEach(m => {
         const row = document.createElement('div');
         row.className = m.highlight ? 'meal-row is-key' : 'meal-row';
+        const noteHtml = m.note ? `<div class="meal-note"><strong>💡 Sobremesa:</strong> ${m.note}</div>` : '';
         row.innerHTML = `
           <div class="meal-time">${m.time}</div>
           <div>
             <div class="meal-title">${m.title}</div>
             <div class="meal-detail">${m.detail}</div>
+            ${noteHtml}
           </div>
         `;
         mealList.appendChild(row);
@@ -745,6 +847,100 @@
       if (!e.target.closest('.info-popover')) {
         document.querySelectorAll('.info-wrap.open').forEach(el => el.classList.remove('open'));
       }
+    });
+
+    // Pop-up (Modal) da Ficha de Musculação
+    const GYM_WORKOUTS = {
+      A: {
+        title: "Série A (Peito, Tríceps e Abdômen) — Segunda e Quinta",
+        note: "Dica: na quinta-feira (antes da esteira), deixe 1–2 reps na reserva no Strip Set / Declinado para preservar energia na corrida.",
+        exercises: [
+          ["Supino Inclinado", "3 x 6~8"],
+          ["Supino Reto Máquina", "3 x 8~10 (Strip set na última)"],
+          ["Supino Declinado + Crucifixo", "3 x 10~12 + Falha"],
+          ["Voador Máquina", "2 x 10~12 (3\" pico de contração)"],
+          ["Tríceps Coice", "3 x 8"],
+          ["Tríceps Lateral Polia Unilateral", "3 x 8"],
+          ["Tríceps Paralelo", "3 x Max"],
+          ["Abdominal Polia Alta em Pé", "3 x 20"]
+        ]
+      },
+      B: {
+        title: "Série B (Costas, Bíceps e Abdômen) — Terça e Sexta",
+        note: "Regra do Core: faça o abdômen completo na TERÇA-FEIRA. Na SEXTA à noite pegue leve ou dispense o abdômen para não fadigar antes do longão de sábado.",
+        exercises: [
+          ["Puxador Frente Supinada", "3 x 8~10 (Cadência 3\"~5\" fase excêntrica)"],
+          ["Remada Polia", "3 x 8~10"],
+          ["Puxador Delta", "3 x 8~10"],
+          ["Remada no Banco Inclinado (H)", "3 x 10~15"],
+          ["Voador Inverso", "3 x 10~15 (3\"~5\" Pico de contração)"],
+          ["Rosca Agachado Polia (V)", "3 x 8"],
+          ["Rosca no Banco Inclinado (—)", "3 x 10~15"],
+          ["Rosca Corda Polia", "2 x Max (Strip Set)"],
+          ["Abdominal Elevação Pernas Barra Fixa", "4 x 10 (completo na Terça)"],
+          ["Abdominal Prancha", "3 x 1'30\" (Descanso 1'30\" • completo na Terça)"]
+        ]
+      },
+      C: {
+        title: "Série C (Perna e Ombro) — Quarta-feira (Sem Corrida)",
+        note: "Ajuste articular: descida controlada de 3\" no Leg 45 e Afundo Smith + Panturrilha 2x+2x para proteger patela (condromalácia) e tíbia (canelite).",
+        exercises: [
+          ["Leg 45", "3 x 10 (Descida controlada 3\")"],
+          ["Afundo Smith", "3 x 10 (Descida controlada 3\")"],
+          ["Extensora Unilateral", "3 x 10"],
+          ["Flexora", "3 x 10"],
+          ["Glúteo na Polia", "3 x 8"],
+          ["Panturrilha Smith", "2 x 10~15 (3\"~5\" Pico de contração)"],
+          ["Panturrilha Sentada", "2 x 10~15 (3\"~5\" Pico de contração)"],
+          ["Remada Alta (—)", "3 x 6/7/8/Max (Clauster descanso 5\"~10\")"],
+          ["Elevação Lateral Banco", "4 x 10~15 (3\"~5\" Pico de Contração)"],
+          ["Elevação Frontal Polia Corda", "3 x 10~15 (Cadência 3\"~5\" fase excêntrica)"],
+          ["Encolhimento Máquina", "2 x Max (Strip Set)"]
+        ]
+      }
+    };
+
+    function getDefaultGymSeries() {
+      const dow = new Date().getDay();
+      if (dow === 2 || dow === 5) return 'B';
+      if (dow === 3) return 'C';
+      return 'A';
+    }
+
+    function renderGymModal(key) {
+      const data = GYM_WORKOUTS[key] || GYM_WORKOUTS.A;
+      document.querySelectorAll('#gymTabs .proto-pill').forEach(b => {
+        b.classList.toggle('active', b.getAttribute('data-gym') === key);
+      });
+      const rows = data.exercises.map(([ex, rep]) => `<tr><td>${ex}</td><td>${rep}</td></tr>`).join('');
+      document.getElementById('gymModalBody').innerHTML = `
+        <div style="font-size:13px; font-weight:700; color:#fff; margin-bottom:8px;">${data.title}</div>
+        <div class="gym-note">💡 ${data.note}</div>
+        <table class="gym-table">
+          <thead><tr><th>Exercício</th><th>Séries / Reps</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      `;
+    }
+
+    const gymModalEl = document.getElementById('gymModal');
+    document.getElementById('openGymModalBtn').addEventListener('click', () => {
+      renderGymModal(getDefaultGymSeries());
+      gymModalEl.classList.add('open');
+    });
+    document.getElementById('closeGymModalBtn').addEventListener('click', () => {
+      gymModalEl.classList.remove('open');
+    });
+    gymModalEl.addEventListener('click', (e) => {
+      if (e.target === gymModalEl) gymModalEl.classList.remove('open');
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && gymModalEl.classList.contains('open')) {
+        gymModalEl.classList.remove('open');
+      }
+    });
+    document.querySelectorAll('#gymTabs .proto-pill').forEach(btn => {
+      btn.addEventListener('click', () => renderGymModal(btn.getAttribute('data-gym')));
     });
 
     window.addEventListener('DOMContentLoaded', loadDashboardData);
