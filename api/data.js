@@ -347,38 +347,32 @@ export default async function handler(req, res) {
     const isQualityRun = /interval|tiro|fartlek|ritmo|teste|pirâmide|100m/i.test(todayWorkout.name || "");
 
     function makeDoubleDayProtocol(specificWorkoutName, specificDistKm, specificQuality) {
-      const intraRunItem = specificQuality
-        ? "1x Gel VO2 C30 Banana (31g carbo, 0mg cafeína) + 350ml água"
-        : "1x Bananinha Tachão Sem Açúcar (~20g carbo) + 350ml água";
+      const intraRunItem = "1x Bananinha Tachão Sem Açúcar (~20g carbo) + 350ml água";
       return {
         key: "double",
         dayLabel: "Dia de Treino Duplo (Musculação + Esteira)",
         badge: specificQuality ? "Treino de Qualidade" : "Rodagem Aeróbica",
         targets: {
           kcal: "~2.400 kcal",
-          carbs: "~280 g",
+          carbs: "~275 g",
           protein: "~160 g",
           water: "3,5 L"
         },
         alerts: [
-          `Musculação (17h30–19h15) ➡️ Esteira (${specificWorkoutName}): consuma o carboidrato intra-treino às 18h45–19h00 (15–30 min antes de correr) para já subir na esteira com energia disponível.`,
+          `Musculação (17h30–19h15) ➡️ Esteira (${specificWorkoutName}): coma a Bananinha Tachão às 18h45 (30 min antes de correr).`,
           "Use inclinação 0,5% a 1,0% na esteira para proteger tíbia (canelite) e joelho (condromalácia).",
-          "PROIBIDO gel Z2+ com cafeína à noite (você já toma Évora PW às 17h00). Preserve seu sono."
+          "Géis Z2+ e VO2 ficam reservados para os Longões de Sábado (economia + proteção do sono)."
         ],
         meals: [
-          { time: "07h30", title: "Café da Manhã", detail: "Shot matinal • 300ml leite semidesnatado + 300ml café • 2 ovos • 50g cuscuz (seco) • muçarela + ricota • 60g mamão + 60g melão + fibras + 30g iogurte • 6g creatina + UC2", highlight: true },
+          { time: "07h30", title: "Café da Manhã", detail: "Shot matinal • 300ml leite semidesnatado + 300ml café • 2 ovos • 60g cuscuz (seco) (ou 1,5 pão de sal / 75g) • muçarela + ricota • 80g mamão + 120g melão + fibras + 30g iogurte • 6g creatina + UC2", highlight: true },
           { time: "12h30", title: "Almoço", detail: "140g frango • 200g arroz • 50g feijão • Ômega 3 + Betaína/Pepsina + D3/K2", highlight: true },
           { time: "16h45", title: "Pré-Musculação", detail: "Base fixa: 300ml leite semidesnatado + 300ml café • 1 fatia muçarela • 100g banana prata c/ canela • Évora PW + 1 complemento abaixo", highlight: true },
-          { time: "18h45–19h00", title: "Intra-Sessão (20–30 min antes da esteira)", detail: intraRunItem, highlight: true },
-          { time: "20h45", title: "Jantar + Sobremesa", detail: "120g coxão mole • 150–180g carbo leve • salada + refri zero • 80g iogurte + 30g Whey + 1 pct Magic Toast (ou 1 col. sopa / 20g de geleia) • chá", highlight: true }
+          { time: "18h45", title: "Intra-Sessão (30 min antes da esteira)", detail: intraRunItem, highlight: true },
+          { time: "20h45", title: "Jantar + Sobremesa", detail: "120g coxão mole • 150–180g carbo leve • salada + refri zero • 80g iogurte + 30g Whey • chá", highlight: true }
         ],
-        gels: specificQuality
-          ? [
-              { moment: "18h55–19h00 (15–20 min antes da esteira)", item: "VO2 Energy Gel C30 Banana", note: "31g carbo • 0mg cafeína (absorção rápida)" }
-            ]
-          : [
-              { moment: "18h45 (30 min antes da esteira)", item: "Bananinha Tachão Sem Açúcar", note: "~20g carbo natural • tempo ideal de digestão" }
-            ],
+        gels: [
+          { moment: "18h45 (30 min antes da esteira)", item: "Bananinha Tachão Sem Açúcar", note: "~20g carbo natural • fixa Seg/Ter/Qui (géis ficam para Sábado)" }
+        ],
         alternatives: [
           {
             title: "Carboidratos do Jantar (escolha 1 opção)",
@@ -394,23 +388,24 @@ export default async function handler(req, res) {
           {
             title: "Complemento Pré-Musculação (16h45 — mantém base fixa)",
             items: [
-              "A: 1 col. sopa (20g) Doce de Leite Zero + 1/2 pct Magic Toast (3 unid.)",
-              "B: 1/2 pct Magic Toast (3 unid.) com 1 col. sobremesa (13g) geleia caseira",
-              "C: 1 col. sopa (20g) Doce de Leite Zero + 1 col. sobremesa (14g) mel",
-              "D: 1 col. sopa (20g) Doce de Leite Zero + 1 Bananinha Tachão"
+              "A: 1 pct inteiro Magic Toast (6 unid.) + 1 col. sopa (20g) Doce de Leite Zero Junco",
+              "B: 1 pct inteiro Magic Toast (6 unid.) com 1 col. sobremesa (13g) geleia caseira",
+              "C: 1 col. sopa (20g) Doce de Leite Zero + 1 Bananinha Tachão Sem Açúcar"
             ]
           },
           {
-            title: "Sobremesa (20h45) & Intra-Treino (18h45–19h00)",
+            title: "Sobremesa (20h45) & Intra (18h45)",
             items: [
-              "Sobremesa: troca 1 pct Magic Toast por 1 col. sopa (20g) geleia ou 2 col. sopa (40g) Doce de Leite Zero",
-              "Intra: 1x VO2 C30 Banana (qualidade) ou 1x Bananinha Tachão (rodagem)"
+              "Sobremesa fixa: 80g iogurte Pense Zero + 30g Whey",
+              "Quer 1 pct Magic Toast à noite c/ Whey? Reduza o cuscuz da manhã de 60g ➡️ 40g (seco) OU troque por 1 pão de sal (50g)",
+              "Equivalência Café: 60g cuscuz (seco) = 1,5 pão de sal (~75g) ou 1 pão de sal (50g) + 1 pct Magic Toast à noite",
+              "Intra fixo (Seg/Ter/Qui): 1x Bananinha Tachão Sem Açúcar (30 min antes da esteira)"
             ]
           },
           {
             title: "Se pesou no FDS (Ajuste Seg/Ter — sem cortar pré-treino)",
             items: [
-              "Café: cuscuz 50g ➡️ 35g (seco) • Almoço: arroz 200g ➡️ 150g",
+              "Café: cuscuz 60g ➡️ 45g (seco) • Almoço: arroz 200g ➡️ 150g",
               "Jantar: carbo 150–180g ➡️ 100–120g • Água: 3,5L",
               "Mantenha 100% intactos: proteína, pré (16h45) e intra (18h45)"
             ]
@@ -436,10 +431,10 @@ export default async function handler(req, res) {
           "Sem esteira hoje: reduza o arroz do almoço (170g) e o carbo do jantar (130g) mantendo a proteína alta."
         ],
         meals: [
-          { time: "07h30", title: "Café da Manhã", detail: "Shot matinal • 300ml leite semidesnatado + 300ml café • 2 ovos • 50g cuscuz (seco) • muçarela + ricota • 60g mamão + 60g melão + fibras • 6g creatina + UC2", highlight: false },
+          { time: "07h30", title: "Café da Manhã", detail: "Shot matinal • 300ml leite semidesnatado + 300ml café • 2 ovos • 60g cuscuz (seco) (ou 1,5 pão de sal / 75g) • muçarela + ricota • 80g mamão + 120g melão + fibras + 30g iogurte • 6g creatina + UC2", highlight: false },
           { time: "12h30", title: "Almoço", detail: "140g frango • 170g arroz • 50g feijão • Ômega 3 + Betaína/Pepsina + D3/K2", highlight: true },
           { time: "16h45", title: "Pré-Treino Pernas", detail: "Base fixa: 300ml leite semidesnatado + 300ml café • 1 fatia muçarela • 100g banana prata c/ canela • Évora PW + 1 complemento abaixo", highlight: false },
-          { time: "20h30", title: "Jantar + Sobremesa", detail: "120g coxão mole • 130g carbo leve • salada + refri zero • 80g iogurte + 30g Whey + 1 pct Magic Toast • chá", highlight: true }
+          { time: "20h30", title: "Jantar + Sobremesa", detail: "120g coxão mole • 130g carbo leve • salada + refri zero • 80g iogurte + 30g Whey • chá", highlight: true }
         ],
         gels: [],
         alternatives: [
@@ -455,9 +450,10 @@ export default async function handler(req, res) {
           {
             title: "Complemento Pré-Treino Pernas (16h45 — mantém base fixa)",
             items: [
-              "A: 1 col. sopa (20g) Doce de Leite Zero + 1/2 pct Magic Toast (3 unid.)",
-              "B: 1/2 pct Magic Toast (3 unid.) com 1 col. sobremesa (13g) geleia caseira",
-              "C: 1 Bananinha Tachão Sem Açúcar"
+              "A: 1 pct inteiro Magic Toast (6 unid.) + 1 col. sopa (20g) Doce de Leite Zero Junco",
+              "B: 1 pct inteiro Magic Toast (6 unid.) com 1 col. sobremesa (13g) geleia caseira",
+              "C: 1 Bananinha Tachão Sem Açúcar",
+              "Sobremesa (20h30): se quiser 1 pct Magic Toast à noite c/ Whey, reduza cuscuz da manhã de 60g ➡️ 40g (seco) ou troque por 1 pão de sal (50g)"
             ]
           }
         ]
@@ -481,23 +477,22 @@ export default async function handler(req, res) {
         alerts: [
           `${satInfo} O objetivo hoje é encher o tanque de glicogênio sem desconforto gástrico.`,
           "Jantar livre estratégico: 4 esfihas abertas (carne/frango) ou 100g macarrão (cru) com atum e molho.",
-          "Sobremesa: mantenha 80g iogurte + 30g Whey. Use 1 pct Magic Toast apenas se jantar o macarrão (dispense se comer esfihas)."
+          "Sobremesa: mantenha 80g iogurte + 30g Whey (sem Magic Toast à noite)."
         ],
         meals: [
-          { time: "07h30", title: "Café da Manhã", detail: "Shot matinal • 300ml leite semidesnatado + 300ml café • 2 ovos • 50g cuscuz (seco) • muçarela + ricota • frutas + fibras • 6g creatina + UC2", highlight: false },
+          { time: "07h30", title: "Café da Manhã", detail: "Shot matinal • 300ml leite semidesnatado + 300ml café • 2 ovos • 60g cuscuz (seco) (ou 1,5 pão de sal / 75g) • muçarela + ricota • 80g mamão + 120g melão + fibras + 30g iogurte • 6g creatina + UC2", highlight: false },
           { time: "12h30", title: "Almoço", detail: "140g frango • 170g arroz • 50g feijão • Ômega 3 + Betaína/Pepsina + D3/K2", highlight: false },
           { time: "16h45", title: "Lanche da Tarde", detail: "Base fixa: 300ml leite semidesnatado + 300ml café • 1 fatia muçarela • 100g banana prata c/ canela + 1 complemento abaixo", highlight: false },
-          { time: "20h30", title: "Jantar Pré-Longão + Sobremesa", detail: "4 esfihas abertas (carne/frango) OU 100g macarrão (cru) com 1 lata de atum e molho • refri zero • 80g iogurte + 30g Whey (+ 1 pct Magic Toast só se for macarrão) • chá", highlight: true }
+          { time: "20h30", title: "Jantar Pré-Longão + Sobremesa", detail: "4 esfihas abertas (carne/frango) OU 100g macarrão (cru) com 1 lata de atum e molho • refri zero • 80g iogurte + 30g Whey • chá", highlight: true }
         ],
         gels: [],
         alternatives: [
           {
             title: "Complemento Lanche da Tarde (16h45 — mantém base fixa)",
             items: [
-              "A: 1 col. sopa (20g) Doce de Leite Zero + 1/2 pct Magic Toast (3 unid.)",
-              "B: 1/2 pct Magic Toast (3 unid.) com 1 col. sobremesa (13g) geleia caseira",
-              "C: 1 col. sopa (20g) Doce de Leite Zero + 1 col. sobremesa (14g) mel",
-              "D: 1 col. sopa (20g) Doce de Leite Zero + 1 Bananinha Tachão"
+              "A: 1 pct inteiro Magic Toast (6 unid.) + 1 col. sopa (20g) Doce de Leite Zero Junco",
+              "B: 1 pct inteiro Magic Toast (6 unid.) com 1 col. sobremesa (13g) geleia caseira",
+              "C: 1 col. sopa (20g) Doce de Leite Zero + 1 Bananinha Tachão Sem Açúcar"
             ]
           },
           {
@@ -577,7 +572,7 @@ export default async function handler(req, res) {
             items: [
               "Melhor janela: almoço de Sábado pós-longão (músculos absorvem melhor)",
               "Vai jantar pesado? Faça o almoço limpo (só proteína magra + salada)",
-              "Se exagerar: ajuste Seg/Ter reduzindo só cuscuz (35g), arroz (150g) e carbo do jantar (110g)"
+              "Se exagerar: ajuste Seg/Ter reduzindo só cuscuz (45g), arroz (150g) e carbo do jantar (110g)"
             ]
           }
         ]
@@ -611,7 +606,7 @@ export default async function handler(req, res) {
             items: [
               "Vai jantar pesado? Almoce limpo (proteína magra + salada, sem carbo/gordura extra)",
               "Beba 3,5L de água + caminhada leve (30–40 min) se almoçar pesado",
-              "Se exagerar: ajuste Seg/Ter reduzindo só cuscuz (35g), arroz (150g) e carbo do jantar (110g)"
+              "Se exagerar: ajuste Seg/Ter reduzindo só cuscuz (45g), arroz (150g) e carbo do jantar (110g)"
             ]
           }
         ]
